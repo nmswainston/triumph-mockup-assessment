@@ -56,18 +56,16 @@
 // Ministry carousel: multi-item, responsive, swipe + autoplay (requirement #4).
 if (window.Swiper) {
     new Swiper(".ministry-swiper", {
-        slidesPerView: 1.5,   // mobile default; the .5 reveals a peek so it reads as swipeable
+        slidesPerView: 1.3,    // mobile: one tile + a peek so it reads as swipeable
         spaceBetween: 16,
-        rewind: true,         // finite 7-item set: snap back to the start instead of cloning for a loop
+        rewind: true,          // finite 7-item set: snap back to the start instead of cloning for a loop
         grabCursor: true,
         autoplay: { delay: 2500, disableOnInteraction: false }, // keeps autoplaying after a manual swipe
         pagination: { el: ".swiper-pagination", clickable: true },
         breakpoints: {
-            576: { slidesPerView: 2.5 },
-            768: { slidesPerView: 3.5 },
-            992: { slidesPerView: 5 },
-            1200: { slidesPerView: 7 }, // full set visible on desktop, like the design
+            576: { slidesPerView: 2.5, spaceBetween: 20 },
+            768: { slidesPerView: 3.5, spaceBetween: 24 },
+            992: { slidesPerView: 5, spaceBetween: 32 }, // 5 of 7 visible -> exactly 3 snap positions
         },
     });
 }
-
