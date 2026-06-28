@@ -407,10 +407,21 @@ img {
 
 .ministry-tile__img {
   width: 100%;
-  aspect-ratio: 240 / 467;   /* Figma tile proportion — height follows width */
+  aspect-ratio: 240 / 467;   /* Figma tile proportion: height follows width */
   object-fit: cover;
+  object-position: center;   /* default; per-tile focal points below */
   border-radius: 16px;
 }
+
+/* Per-tile focal points. Sources are landscape, so cover crops the SIDES —
+   the X value picks which vertical slice (the subject) stays in frame. */
+.ministry-tile__img--prayer       { object-position: 52% center; }
+.ministry-tile__img--kids         { object-position: 26% center; }
+.ministry-tile__img--students     { object-position: 50% center; }
+.ministry-tile__img--worship      { object-position: 50% center; }
+.ministry-tile__img--men          { object-position: 35% center; }
+.ministry-tile__img--women        { object-position: 26% center; }
+.ministry-tile__img--small-groups { object-position: 50% center; }
 
 .ministry-tile__label {
   margin-top: 0.75rem;
