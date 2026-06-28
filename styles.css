@@ -2,10 +2,14 @@
 :root {
   --orange: #EB3300;
   /* real Rock Solid orange, from Figma */
+  --orange-dark: #c42a00;
+  /* darker shade for hover */
   --bg: #F5F5F5;
   /* page background from the file */
   --ink: #1a1d21;
   --muted: #5a6068;
+  --dark: #2E2320;
+  /* dark brand brown: Saved Lives card, dark buttons */
 }
 
 /* ===== Reset ===== */
@@ -40,7 +44,7 @@ img {
   display: flex;
   flex-direction: column;
   padding: 1rem clamp(1rem, 4vw, 3rem) 2rem;
-  border-radius: 24px;
+  border-radius: 48px;
   background-image: url("images/hero-worship-crowd.jpg");
   background-size: cover;
   background-position: center;
@@ -278,12 +282,27 @@ img {
 
 /* ===== Our Mission is Simple (#connect) ===== */
 .mission-band {
+  position: relative;
+  overflow: hidden;
   background-color: var(--orange);
-  background-image: url("images/bg-orange-gradient.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
+  border-radius: 48px;
   padding: 4rem 1.5rem;
+}
+
+/* Figma: bold gradient placed at 30% opacity, Hard Light blend, over solid orange */
+.mission-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/bg-orange-gradient.jpg") center / cover no-repeat;
+  mix-blend-mode: hard-light;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.mission-band > * {
+  position: relative;
+  z-index: 1;
 }
 
 .mission-band__intro {
@@ -291,7 +310,7 @@ img {
 }
 
 .mission-card {
-  border-radius: 16px;
+  border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -388,7 +407,7 @@ img {
 
 .ministry-tile__img {
   width: 100%;
-  height: 260px;
+  aspect-ratio: 240 / 467;   /* Figma tile proportion — height follows width */
   object-fit: cover;
   border-radius: 16px;
 }
@@ -406,4 +425,173 @@ img {
 
 .ministry-swiper .swiper-pagination-bullet-active {
   background-color: var(--orange);
+}
+
+/* ===== Tagline ===== */
+
+.tagline__heading {
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  max-width: 68.8125rem;
+  margin-inline: auto;
+}
+
+.tagline__accent {
+  color: var(--orange);
+}
+
+.tagline__muted {
+  color: #192C4066;
+}
+
+.btn-dark-solid {
+  background-color: var(--dark);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-dark-solid:hover {
+  background-color: #1f1813;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ===== Saved Lives Are Changed Lives (#stories) ===== */
+.stories-card {
+  background-color: var(--dark);   /* #2E2320 brand brown, from our design tokens */
+  border-radius: 24px;
+}
+
+/* Orange "Share Your Story" button */
+.btn-share {
+  background-color: var(--orange);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-share:hover {
+  background-color: var(--orange-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Story image tiles */
+.story__img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+.story__img--tall  { height: clamp(280px, 34vw, 420px); }
+.story__img--short { height: clamp(132px, 16vw, 198px); }
+
+.story__img:hover {
+  transform: scale(1.04);
+}
+
+.story__caption {
+  margin-top: 0.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background-color: #fff;
+  color: var(--ink);
+}
+
+/* The logo SVG is white (built for the dark hero); flip it dark for the light footer */
+.footer__logo {
+  height: 48px;
+  width: auto;
+  filter: invert(1);
+}
+
+/* <address> renders italic by default — reset it */
+.footer__address {
+  font-style: normal;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.footer__phone {
+  color: var(--muted);
+}
+
+.footer__social a {
+  color: var(--ink);
+  font-size: 1.25rem;
+  transition: color 0.2s ease;
+}
+
+.footer__social a:hover {
+  color: var(--orange);
+}
+
+.footer__heading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.footer__links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer__links a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__links a:hover {
+  color: var(--orange);
+}
+
+/* Outline "Log In" button */
+.btn-footer-outline {
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-footer-outline:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.footer__bottom a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer__bottom a:hover {
+  color: var(--orange);
+  text-decoration: underline;
 }
