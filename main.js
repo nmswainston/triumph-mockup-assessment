@@ -1,27 +1,3 @@
-//Mobile nav: tap outside the menu to close it.
-(function () {
-    const menu = document.getElementById("mainNav");
-    const toggler = document.querySelector(".navbar-toggler");
-    if (!menu || !toggler) return;
-
-    const isOpen = () => menu.classList.contains("show");
-    const close = () => bootstrap.Collapse.getOrCreateInstance(menu).hide();
-
-    // Tap outside the open menu to close it.
-    document.addEventListener("click", function (e) {
-        if (!isOpen()) return;
-        if (menu.contains(e.target) || toggler.contains(e.target)) return;
-        close();
-    });
-
-    // Tap a nav link to close the menu.
-    menu.querySelectorAll(".nav-link").forEach(function (link) {
-        link.addEventListener("click", function () {
-            if (isOpen()) close();
-        });
-    });
-})();
-
 // Hero countdown to the next Sunday service (10 AM local).
 (function () {
     const el = document.getElementById("countdown");
@@ -56,16 +32,17 @@
 // Ministry carousel: multi-item, responsive, swipe + autoplay (requirement #4).
 if (window.Swiper) {
     new Swiper(".ministry-swiper", {
-        slidesPerView: 1.3,    // mobile: one tile + a peek so it reads as swipeable
+        slidesPerView: "auto",
         spaceBetween: 16,
-        rewind: true,          // finite 7-item set: snap back to the start instead of cloning for a loop
+        centeredSlides: true,
+        rewind: true,
         grabCursor: true,
-        autoplay: { delay: 2500, disableOnInteraction: false }, // keeps autoplaying after a manual swipe
+        autoplay: { delay: 2500, disableOnInteraction: false },
         pagination: { el: ".swiper-pagination", clickable: true },
         breakpoints: {
-            576: { slidesPerView: 2.5, spaceBetween: 20 },
-            768: { slidesPerView: 3.5, spaceBetween: 24 },
-            992: { slidesPerView: 5, spaceBetween: 32 }, // 5 of 7 visible -> exactly 3 snap positions
+            576: { slidesPerView: 2.5, centeredSlides: false, spaceBetween: 20 },
+            768: { slidesPerView: 3.5, centeredSlides: false, spaceBetween: 24 },
+            992: { slidesPerView: 5, centeredSlides: false, spaceBetween: 32 },
         },
     });
 }

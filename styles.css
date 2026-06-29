@@ -1,15 +1,11 @@
 /* ===== Design tokens ===== */
 :root {
   --orange: #EB3300;
-  /* real Rock Solid orange, from Figma */
   --orange-dark: #c42a00;
-  /* darker shade for hover */
   --bg: #F5F5F5;
-  /* page background from the file */
   --ink: #1a1d21;
   --muted: #5a6068;
   --dark: #2E2320;
-  /* dark brand brown: Saved Lives card, dark buttons */
 }
 
 /* ===== Reset ===== */
@@ -17,6 +13,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -31,8 +31,25 @@ img {
   display: block;
 }
 
+/* ===== Shared buttons ===== */
+
+.btn-dark-solid {
+  background-color: var(--dark);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-dark-solid:hover {
+  background-color: #1f1813;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 /* ===== Hero (rounded card: nav + headline + countdown/social) ===== */
-/* The section is just a gutter; the card is the visual element. */
+
 .hero {
   padding: 1rem;
   background-color: var(--bg);
@@ -46,13 +63,12 @@ img {
   padding: 1rem clamp(1rem, 4vw, 3rem) 2rem;
   border-radius: 48px;
   background-image: url("images/hero-worship-crowd.jpg");
-  background-size: cover;
-  background-position: center;
+  background-size: 145%;
+  background-position: 43% 52%;
+  background-repeat: no-repeat;
   color: #fff;
 }
 
-/* Dark overlay for text contrast; border-radius: inherit keeps its corners
-   rounded so we don't need overflow:hidden (which would clip the mobile menu). */
 .hero__card::before {
   content: "";
   position: absolute;
@@ -61,51 +77,145 @@ img {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Lift real content above the overlay */
-.hero__card>* {
+.hero__card > * {
   position: relative;
   z-index: 1;
 }
 
-/* --- Nav (top of hero card) --- */
+/* --- Hero header / site nav --- */
+
+/* Keep the menu above the hero headline/content */
+.hero-header {
+  position: relative;
+  z-index: 1100;
+}
+
+.mobile-menu.offcanvas {
+  z-index: 1200;
+}
+
+.offcanvas-backdrop {
+  z-index: 1190;
+}
+
 .site-nav {
-  background: transparent;
+  width: 100%;
+}
+
+.site-nav__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.site-nav__brand {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .site-nav__logo {
-  height: 38px;
-  width: auto;
+  width: 178px;
+  height: auto;
 }
 
-.site-nav .nav-link {
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.site-nav .nav-link:hover,
-.site-nav .nav-link:focus {
-  color: #fff;
-}
-
-.btn-give {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+.site-nav__pill {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem;
   border-radius: 999px;
-  padding: 0.5rem 1.25rem;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.btn-give:hover {
-  background-color: rgba(255, 255, 255, 0.28);
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav__links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 0.95rem;
+  border-radius: 999px;
   color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.site-nav__links a:hover,
+.site-nav__links a:focus {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.site-nav__give {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.site-nav__give:hover,
+.site-nav__give:focus {
+  background: rgba(255, 255, 255, 0.4);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.site-nav__menu {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--dark);
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.site-nav__menu:hover {
+  transform: translateY(-1px);
+  background: #f0f0f0;
 }
 
 .site-nav__account {
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 600;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.2s ease;
@@ -115,22 +225,114 @@ img {
   color: #fff;
 }
 
-@media (max-width: 991.98px) {
-  .site-nav .navbar-collapse {
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 12px;
-    padding: 1rem 1.25rem;
-    margin-top: 0.75rem;
-  }
+/* --- Mobile offcanvas menu --- */
 
-  .site-nav__actions {
-    margin-top: 0.75rem;
-  }
+.mobile-menu {
+  position: fixed;
+  width: min(86vw, 360px);
+  background: var(--dark);
+  color: #fff;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* --- Headline + CTAs --- */
+.mobile-menu .offcanvas-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-menu .offcanvas-title {
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mobile-menu .offcanvas-body {
+  padding: 1.5rem;
+}
+
+.mobile-menu__links {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-menu__links a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 1rem;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-menu__links a:hover,
+.mobile-menu__links a:focus {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateX(4px);
+}
+
+.mobile-menu__actions {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.mobile-menu__give {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 14px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-menu__give:hover,
+.mobile-menu__give:focus {
+  background: var(--orange-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.mobile-menu__account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  border-radius: 14px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-menu__account:hover,
+.mobile-menu__account:focus {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* --- Hero content --- */
+
 .hero__content {
   flex: 1 1 auto;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -139,16 +341,26 @@ img {
 }
 
 .hero__title {
+  max-width: 1100px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 900;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1.1;
+  font-size: 80px;
+  line-height: 96px;
+  letter-spacing: 0;
+  text-align: center;
   margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .hero__subcopy {
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  max-width: 36rem;
+  max-width: 900px;
   margin: 0 auto 2rem;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 48px;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .hero__cta {
@@ -159,38 +371,44 @@ img {
 }
 
 .btn-hero-light {
-  background-color: #fff;
+  background-color: #fbfbfb;
   color: var(--ink);
   border-radius: 8px;
-  padding: 0.75rem 2rem;
+  padding: 1rem 1.5rem;
   font-weight: 600;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .btn-hero-light:hover {
-  background-color: #ececec;
+  background-color: #fff;
   color: var(--ink);
   transform: translateY(-2px);
 }
 
 .btn-hero-ghost {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(251, 251, 251, 0.2);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 8px;
-  padding: 0.75rem 2rem;
+  padding: 1rem 1.5rem;
   font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .btn-hero-ghost:hover {
-  background-color: rgba(255, 255, 255, 0.28);
+  background-color: rgba(251, 251, 251, 0.3);
+  border-color: rgba(255, 255, 255, 0.55);
   color: #fff;
   transform: translateY(-2px);
 }
 
-/* --- Countdown + social (bottom of hero card) --- */
+/* --- Hero footer (countdown + social) --- */
+
 .hero__footer {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: end;
@@ -224,17 +442,115 @@ img {
 }
 
 .hero__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
   font-size: 1.2rem;
   opacity: 0.85;
   transition: opacity 0.2s ease;
 }
 
+.hero__social .fa-facebook-f {
+  font-family: "Font Awesome 5 Brands";
+  font-size: 22.63px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27.16px;
+  letter-spacing: 0;
+  text-align: center;
+}
+
 .hero__social a:hover {
   opacity: 1;
 }
 
+/* --- Hero responsive --- */
+
+@media (max-width: 1199.98px) {
+  .site-nav__logo {
+    width: 150px;
+  }
+
+  .site-nav__links a {
+    padding: 0 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  .site-nav__give {
+    padding: 0 0.85rem;
+    font-size: 0.78rem;
+  }
+
+  .hero__title {
+    font-size: clamp(3rem, 6vw, 80px);
+    line-height: 1.1;
+    white-space: normal;
+  }
+
+  .hero__subcopy {
+    max-width: 760px;
+    font-size: clamp(1.25rem, 2.6vw, 36px);
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .site-nav__inner {
+    grid-template-columns: auto 1fr;
+  }
+
+  .site-nav__pill {
+    justify-self: end;
+  }
+
+  .site-nav__links,
+  .site-nav__give,
+  .site-nav__account {
+    display: none;
+  }
+
+  .site-nav__logo {
+    width: 145px;
+  }
+
+  .hero__card {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
 @media (max-width: 575.98px) {
+  .hero {
+    padding: 0.75rem;
+  }
+
+  .hero__card {
+    min-height: calc(100vh - 1.5rem);
+    border-radius: 32px;
+  }
+
+  .site-nav__logo {
+    width: 130px;
+  }
+
+  .site-nav__menu {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    line-height: 1.05;
+  }
+
+  .hero__subcopy {
+    max-width: 100%;
+    font-size: 1.15rem;
+    line-height: 1.45;
+  }
+
   .hero__footer {
     grid-template-columns: 1fr;
     justify-items: center;
@@ -250,46 +566,141 @@ img {
   }
 }
 
-/* ===== Welcome / Who We Are (#about) ===== */
+/* ===== Welcome / Who We Are ===== */
+
+.about-section {
+  background-color: var(--bg);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.about-container {
+  width: min(100% - 48px, 1280px);
+  margin-inline: auto;
+}
+
 .eyebrow {
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
+  margin-bottom: 1rem;
 }
 
 .about__heading {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 700;
-  line-height: 1.25;
+  max-width: 520px;
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--ink);
 }
 
 .about__body {
-  font-size: 1.125rem;
+  max-width: 420px;
+  margin-left: auto;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
   font-weight: 400;
-  line-height: 1.667;
+  line-height: 1.65;
+  color: var(--ink);
 }
 
 .about__art {
   width: 100%;
-  min-height: 200px;
-  aspect-ratio: 1280 / 385;
+  height: clamp(220px, 30vw, 385px);
   object-fit: cover;
   object-position: center 40%;
   border-radius: 24px;
+  display: block;
+  margin-top: 2rem;
 }
 
-/* ===== Our Mission is Simple (#connect) ===== */
+/* --- About responsive --- */
+
+@media (max-width: 991.98px) {
+  .about-container {
+    width: min(100% - 40px, 1280px);
+  }
+
+  .about__heading {
+    max-width: 100%;
+  }
+
+  .about__body {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .about-section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .about-container {
+    width: min(100% - 32px, 1280px);
+  }
+
+  .about__heading {
+    font-size: 1.65rem;
+  }
+
+  .about__body {
+    font-size: 1rem;
+  }
+
+  .about__art {
+    height: clamp(220px, 58vw, 300px);
+    border-radius: 18px;
+  }
+}
+
+/* ===== Our Mission is Simple (orange card band) ===== */
+
+/* Section spacing comes from Bootstrap utilities in the markup:
+   section .p-3 (1rem gutter) + .container-fluid .p-0 (full-bleed band). */
+
+/* Wrapper exists so the decorative tab can sit ABOVE the band's top edge
+   without being clipped by the band's own overflow: hidden. */
+.mission-band-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.mission-band__tab {
+  position: absolute;
+  left: 50%;
+  top: 0;                  /* white notch sits on the band's top edge */
+  transform: translateX(-50%);
+  width: 138px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Dark down-arrow seated in the white notch (decorative scroll cue) */
+.mission-band__arrow {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  z-index: 3;
+  pointer-events: none;
+}
+
 .mission-band {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  min-height: auto;
   background-color: var(--orange);
   border-radius: 48px;
-  padding: 4rem 1.5rem;
+  padding: clamp(4rem, 5vw, 5rem) clamp(1.5rem, 6vw, 12rem) 0;
 }
 
-/* Figma: bold gradient placed at 30% opacity, Hard Light blend, over solid orange */
 .mission-band::before {
   content: "";
   position: absolute;
@@ -309,6 +720,11 @@ img {
   max-width: 32rem;
 }
 
+.mission-band > .row {
+  max-width: 1296px;
+  margin-inline: auto;
+}
+
 .mission-card {
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -325,15 +741,18 @@ img {
 }
 
 .mission-card__icon {
+  width: 116px;
+  height: 98px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  border: 1.5px solid var(--orange);
-  border-radius: 50%;
-  color: var(--orange);
-  font-size: 1.6rem;
+  margin-inline: auto;
+}
+
+.mission-card__icon svg {
+  width: 116px;
+  height: auto;
+  display: block;
 }
 
 .mission-card__link {
@@ -346,7 +765,38 @@ img {
   text-decoration: underline;
 }
 
-/* Gospel subsection (still inside the orange panel) */
+/* --- Gospel subsection (inside the orange panel) --- */
+
+.mission-gospel {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: min(100%, 1280px);
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-top: 0;
+}
+
+.mission-gospel__copy,
+.mission-gospel__eyebrow,
+.mission-gospel__art {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.mission-gospel__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.mission-gospel__copy .row {
+  --bs-gutter-x: 64px;
+  width: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 .mission-gospel__eyebrow {
   font-size: 0.8rem;
   font-weight: 600;
@@ -366,76 +816,61 @@ img {
 
 .mission-gospel__art {
   width: 100%;
-  height: clamp(180px, 22vw, 300px);
+  height: 465px;
   object-fit: cover;
-  object-position: center 55%;
-  border-radius: 16px;
+  object-position: center 58%;
+  border-radius: 24px 24px 0 0;
 }
 
-/* ===== Tagline (#tagline) ===== */
-.tagline__heading {
-  font-size: clamp(2.5rem, 6vw, 3.75rem);
-  font-weight: 800;
-  line-height: 1;
-  text-transform: uppercase;
-  max-width: 68.8125rem;
-  margin-inline: auto;
+@media (min-width: 1200px) {
+  .mission-gospel {
+    width: 1280px;
+    height: auto;
+    margin-left: calc((100vw - 1280px) / 2 - 16px - clamp(1.5rem, 6vw, 12rem));
+    margin-right: auto;
+  }
+
+  .mission-gospel__copy .row {
+    display: grid;
+    grid-template-columns: 650px 420px;
+    justify-content: space-between;
+    column-gap: 0;
+  }
+
+  .mission-gospel__copy .row > * {
+    width: auto;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .mission-gospel__heading {
+    font-size: 1.75rem;
+    line-height: 1.18;
+  }
+
+  .mission-gospel__body {
+    max-width: 420px;
+    line-height: 1.5;
+  }
 }
 
-.tagline__accent {
-  color: var(--orange);
-}
+@media (max-width: 991.98px) {
+  .mission-band {
+    min-height: auto;
+    padding: 4.5rem 1.25rem 3rem;
+  }
 
-.tagline__muted {
-  color: #192C4066;
-}
+  .mission-gospel {
+    gap: 2rem;
+    padding-top: 3rem;
+    height: auto;
+  }
 
-/* ===== Find a Place to Volunteer (#volunteer) ===== */
-.volunteer__icon {
-  width: 72px;
-  height: auto;
-  margin-inline: auto;
-}
-
-.volunteer__subcopy {
-  max-width: 34rem;
-}
-
-.ministry-swiper {
-  padding-bottom: 2.5rem;
-}
-
-.ministry-tile__img {
-  width: 100%;
-  aspect-ratio: 240 / 467;   /* Figma tile proportion: height follows width */
-  object-fit: cover;
-  object-position: center;   /* default; per-tile focal points below */
-  border-radius: 16px;
-}
-
-/* Per-tile focal points. Sources are landscape, so cover crops the SIDES —
-   the X value picks which vertical slice (the subject) stays in frame. */
-.ministry-tile__img--prayer       { object-position: 52% center; }
-.ministry-tile__img--kids         { object-position: 26% center; }
-.ministry-tile__img--students     { object-position: 50% center; }
-.ministry-tile__img--worship      { object-position: 50% center; }
-.ministry-tile__img--men          { object-position: 35% center; }
-.ministry-tile__img--women        { object-position: 26% center; }
-.ministry-tile__img--small-groups { object-position: 50% center; }
-
-.ministry-tile__label {
-  margin-top: 0.75rem;
-  margin-bottom: 0;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.ministry-swiper .swiper-slide-active .ministry-tile__label {
-  color: var(--orange);
-}
-
-.ministry-swiper .swiper-pagination-bullet-active {
-  background-color: var(--orange);
+  .mission-gospel__art {
+    height: clamp(280px, 70vw, 465px);
+    border-radius: 20px 20px 0 0;
+  }
 }
 
 /* ===== Tagline ===== */
@@ -457,28 +892,81 @@ img {
   color: #192C4066;
 }
 
-.btn-dark-solid {
-  background-color: var(--dark);
-  color: #fff;
-  border-radius: 8px;
-  padding: 0.75rem 2rem;
+/* ===== Find a Place to Volunteer (ministry carousel) ===== */
+
+.volunteer__icon {
+  width: 72px;
+  height: auto;
+  margin-inline: auto;
+}
+
+.volunteer__subcopy {
+  max-width: 34rem;
+}
+
+.ministry-swiper {
+  padding-bottom: 2.5rem;
+}
+
+.ministry-swiper .swiper-slide {
+  width: min(72vw, 240px);
+}
+
+.ministry-tile__img {
+  width: 100%;
+  aspect-ratio: 240 / 467;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+}
+
+.ministry-tile__img--prayer {
+  object-position: 52% center;
+}
+
+.ministry-tile__img--kids,
+.ministry-tile__img--women {
+  object-position: 26% center;
+}
+
+.ministry-tile__img--students,
+.ministry-tile__img--worship,
+.ministry-tile__img--small-groups {
+  object-position: 50% center;
+}
+
+.ministry-tile__img--men {
+  object-position: 35% center;
+}
+
+.ministry-tile__label {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
   font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  color: var(--ink);
 }
 
-.btn-dark-solid:hover {
-  background-color: #1f1813;
-  color: #fff;
-  transform: translateY(-2px);
+.ministry-swiper .swiper-slide-active .ministry-tile__label {
+  color: var(--orange);
 }
 
-/* ===== Saved Lives Are Changed Lives (#stories) ===== */
+.ministry-swiper .swiper-pagination-bullet-active {
+  background-color: var(--orange);
+}
+
+@media (min-width: 576px) {
+  .ministry-swiper .swiper-slide {
+    width: auto;
+  }
+}
+
+/* ===== Saved Lives Are Changed Lives ===== */
+
 .stories-card {
-  background-color: var(--dark);   /* #2E2320 brand brown, from our design tokens */
+  background-color: var(--dark);
   border-radius: 24px;
 }
 
-/* Orange "Share Your Story" button */
 .btn-share {
   background-color: var(--orange);
   color: #fff;
@@ -494,7 +982,6 @@ img {
   transform: translateY(-2px);
 }
 
-/* Story image tiles */
 .story__img {
   width: 100%;
   object-fit: cover;
@@ -502,8 +989,13 @@ img {
   transition: transform 0.4s ease;
 }
 
-.story__img--tall  { height: clamp(280px, 34vw, 420px); }
-.story__img--short { height: clamp(132px, 16vw, 198px); }
+.story__img--tall {
+  height: clamp(280px, 34vw, 420px);
+}
+
+.story__img--short {
+  height: clamp(132px, 16vw, 198px);
+}
 
 .story__img:hover {
   transform: scale(1.04);
@@ -517,19 +1009,62 @@ img {
 }
 
 /* ===== Footer ===== */
+
 .footer {
   background-color: #fff;
   color: var(--ink);
+  padding: 120px 1rem 2rem;
 }
 
-/* The logo SVG is white (built for the dark hero); flip it dark for the light footer */
+.footer__inner {
+  width: min(100%, 1280px);
+  min-height: 364px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.footer__brand {
+  flex: 0 0 320px;
+}
+
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3rem;
+}
+
+.footer__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.footer__columns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5rem;
+}
+
+.footer__column {
+  min-width: 145px;
+}
+
 .footer__logo {
   height: 48px;
   width: auto;
   filter: invert(1);
 }
 
-/* <address> renders italic by default — reset it */
 .footer__address {
   font-style: normal;
   color: var(--muted);
@@ -541,13 +1076,50 @@ img {
 }
 
 .footer__social a {
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--dark);
+  border-radius: 50%;
   color: var(--ink);
-  font-size: 1.25rem;
-  transition: color 0.2s ease;
+  font-size: 1.45rem;
+  line-height: 1;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.footer__social a:has(svg) {
+  border: 0;
+}
+
+.footer__facebook-icon,
+.footer__x-icon,
+.footer__instagram-icon,
+.footer__youtube-icon {
+  width: 60px;
+  height: 60px;
+  display: block;
 }
 
 .footer__social a:hover {
+  border-color: var(--orange);
   color: var(--orange);
+}
+
+.btn-footer-outline {
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-footer-outline:hover {
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .footer__heading {
@@ -573,28 +1145,10 @@ img {
   color: var(--orange);
 }
 
-/* Outline "Log In" button */
-.btn-footer-outline {
-  background-color: transparent;
-  color: var(--ink);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 0.75rem 2rem;
-  font-weight: 600;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.btn-footer-outline:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
-
 .footer__bottom {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
   color: var(--muted);
   font-size: 0.85rem;
-  text-align: center;
+  text-align: left;
 }
 
 .footer__bottom a {
@@ -605,4 +1159,45 @@ img {
 .footer__bottom a:hover {
   color: var(--orange);
   text-decoration: underline;
+}
+
+@media (max-width: 991.98px) {
+  .footer {
+    padding-top: 5rem;
+  }
+
+  .footer__inner {
+    min-height: 0;
+    gap: 3rem;
+  }
+
+  .footer__content,
+  .footer__nav {
+    align-items: flex-start;
+  }
+
+  .footer__content {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .footer__brand {
+    flex-basis: auto;
+  }
+
+  .footer__columns,
+  .footer__actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .footer__columns {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer__actions {
+    flex-wrap: wrap;
+  }
 }
