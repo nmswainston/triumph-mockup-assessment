@@ -2,7 +2,7 @@
 :root {
   --orange: #EB3300;
   --orange-dark: #c42a00;
-  --bg: #F5F5F5;
+  --bg: #ffffff;
   --ink: #1a1d21;
   --muted: #5a6068;
   --dark: #2E2320;
@@ -33,9 +33,8 @@ img {
 }
 
 
-  .container {
-    max-width: 1280px;
-  }
+.container {
+  max-width: 1280px;
 }
 
 /* ===== Shared buttons ===== */
@@ -55,7 +54,7 @@ img {
   transform: translateY(-2px);
 }
 
-/* ===== Hero (rounded card: nav + headline + countdown/social) ===== */
+/* ===== Hero ===== */
 
 .hero {
   padding: 1rem;
@@ -543,6 +542,9 @@ img {
   .hero__card {
     min-height: calc(100vh - 1.5rem);
     border-radius: 32px;
+    /* Shift the focal point left so the worship leader stays in frame
+       on the narrow phone crop (he sits ~31% across the photo) */
+    background-position: 30% center;
   }
 
   .site-nav__logo {
@@ -608,9 +610,8 @@ img {
   margin-bottom: 1rem;
 }
 
-/* Figma spreads the two text blocks to opposite edges: a 520px heading on
-   the left and a 420px body on the right, with the body inset ~2rem from the
-   content edge. An explicit grid states those proportions plainly. */
+/* Figma spreads these to opposite edges: 520px heading left, 420px body
+   right, with the body inset ~2rem from the content edge. */
 .about__cols {
   display: grid;
   grid-template-columns: 520px 420px;
@@ -725,7 +726,8 @@ img {
   min-height: auto;
   background-color: var(--orange);
   border-radius: 48px;
-  padding: clamp(4rem, 9vw, 10.5rem) clamp(1.5rem, 6vw, 12rem) 0;}
+  padding: clamp(4rem, 9vw, 10.5rem) clamp(1.5rem, 6vw, 12rem) 0;
+}
 
 .mission-band::before {
   content: "";
@@ -1035,11 +1037,6 @@ img {
   border-radius: 48px;
 }
 
-.stories-card .row {
-  max-width: 1280px;
-  margin-inline: auto;
-}
-
 .stories-card h2 {
   font-size: clamp(36px, 3vw, 48px);
   font-weight: 800 !important;
@@ -1073,13 +1070,6 @@ img {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-@media (max-width: 991.98px) {
-  .stories-grid {
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
-  }
 }
 
 .btn-share {
@@ -1134,6 +1124,45 @@ img {
   font-size: 20px;
   font-weight: 700;
   line-height: 20px;
+}
+
+/* Stack the text above the images below the lg breakpoint */
+@media (max-width: 991.98px) {
+  .stories-grid {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+  }
+}
+
+/* Tablet: keep big | stack side by side, but stretch the big image to the
+   stack's height so their bottoms line up */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .stories-images {
+    align-items: stretch;
+  }
+  .stories-images > .story {
+    display: flex;
+    flex-direction: column;
+  }
+  .story__img--tall {
+    aspect-ratio: auto;
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+/* Mobile: tall image on top, the two short images side by side beneath it */
+@media (max-width: 767.98px) {
+  .stories-images {
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
+  }
+  .stories-stack {
+    flex-direction: row;
+  }
+  .stories-stack > .story {
+    flex: 1;
+  }
 }
 
 /* ===== Footer ===== */

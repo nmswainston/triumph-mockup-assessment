@@ -29,7 +29,7 @@
     setInterval(tick, 1000);
 })();
 
-// Ministry carousel: multi-item, responsive, swipe + autoplay (requirement #4).
+// Ministry carousel: multi-item, responsive, swipe + autoplay.
 if (window.Swiper) {
     new Swiper(".ministry-swiper", {
         slidesPerView: "auto",
