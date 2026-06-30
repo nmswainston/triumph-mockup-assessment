@@ -24,6 +24,7 @@ body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg);
   color: var(--ink);
+  overflow-wrap: break-word;
 }
 
 img {
@@ -31,9 +32,7 @@ img {
   display: block;
 }
 
-/* Content column: match the Figma's 1280px inner width.
-   (Bootstrap's .container caps at 1140/1320, so we override it.) */
-@media (min-width: 1200px) {
+
   .container {
     max-width: 1280px;
   }
@@ -726,8 +725,7 @@ img {
   min-height: auto;
   background-color: var(--orange);
   border-radius: 48px;
-  padding: clamp(4rem, 5vw, 5rem) clamp(1.5rem, 6vw, 12rem) 0;
-}
+  padding: clamp(4rem, 9vw, 10.5rem) clamp(1.5rem, 6vw, 12rem) 0;}
 
 .mission-band::before {
   content: "";
@@ -773,7 +771,7 @@ img {
 }
 
 .mission-card .card-body {
-  padding: 2rem 1.5rem;
+  padding: 3.25rem 1.5rem;
 }
 
 .mission-card h3 {
@@ -805,20 +803,14 @@ img {
   text-decoration: none;
 }
 
-.mission-card__link:hover {
-  text-decoration: underline;
-}
 
 /* --- Gospel subsection (inside the orange panel) --- */
 
 .mission-gospel {
+  margin-top: 8rem;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  width: min(100%, 1280px);
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-top: 0;
+  gap: 64px;
 }
 
 .mission-gospel__copy,
@@ -853,19 +845,21 @@ img {
   font-size: clamp(28px, 3vw, 32px);
   font-weight: 700;
   line-height: 1.25;
+  text-wrap: balance;
 }
 
 .mission-gospel__body {
   font-size: 18px;
   line-height: 30px;
   opacity: 0.92;
+  text-wrap: pretty;
 }
 
 .mission-gospel__art {
   width: 100%;
   height: 465px;
   object-fit: cover;
-  object-position: center 58%;
+  object-position: center 61%;
   border-radius: 24px 24px 0 0;
 }
 
@@ -910,7 +904,7 @@ img {
 
   .mission-gospel__art {
     height: clamp(280px, 70vw, 465px);
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px;
   }
 }
 
@@ -931,14 +925,14 @@ img {
 }
 
 .tagline__mark--h {
-  top: 24px;
+  top: 120px;
   left: 32px;
   width: 55px;
   height: 5px;
 }
 
 .tagline__mark--v {
-  bottom: 48px;
+  bottom: 0px;
   right: 32px;
   width: 5px;
   height: 55px;
@@ -1041,7 +1035,6 @@ img {
   border-radius: 48px;
 }
 
-/* Keep the card's content on the same 1280px column as the rest of the page */
 .stories-card .row {
   max-width: 1280px;
   margin-inline: auto;
@@ -1056,6 +1049,37 @@ img {
 .stories-card p {
   font-size: 18px;
   line-height: 28px;
+  max-width: 343px;
+  opacity: 0.8;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: 488fr 731fr;
+  column-gap: 61px;
+  align-items: start;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.stories-images {
+  display: grid;
+  grid-template-columns: 489fr 207fr;
+  column-gap: 35px;
+  align-items: start;
+}
+
+.stories-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 991.98px) {
+  .stories-grid {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+  }
 }
 
 .btn-share {
@@ -1081,15 +1105,20 @@ img {
 }
 
 .story__img--tall {
-  height: clamp(280px, 34vw, 420px);
+  aspect-ratio: 489 / 458;
+  transform: scaleX(-1);
 }
 
 .story__img--short {
-  height: clamp(132px, 16vw, 198px);
+  aspect-ratio: 207 / 194;
 }
 
 .story__img:hover {
   transform: scale(1.04);
+}
+
+.story__img--tall:hover {
+  transform: scaleX(-1) scale(1.04);
 }
 
 .story__caption {
@@ -1109,8 +1138,7 @@ img {
 
 /* ===== Footer ===== */
 
-/* Footer blends into the page (no card surface), keeping the Figma's 696px
-   vertical footprint. Content stays on the shared 1280px column. */
+
 .footer {
   background-color: var(--bg);
   color: var(--ink);
@@ -1144,6 +1172,7 @@ img {
   flex: 0 0 320px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 34px;
 }
 
