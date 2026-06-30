@@ -11,7 +11,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -27,16 +27,12 @@
         <header class="hero-header">
           <nav class="site-nav" aria-label="Main navigation">
             <div class="site-nav__inner">
-        
+
               <!-- Left logo -->
               <a class="site-nav__brand" href="#">
-                <img
-                  src="images/logo-rocksolid-full.svg"
-                  alt="Rock Solid Christian Church"
-                  class="site-nav__logo"
-                >
+                <img src="images/logo-rocksolid-full.svg" alt="Rock Solid Christian Church" class="site-nav__logo">
               </a>
-        
+
               <!-- Center pill nav -->
               <div class="site-nav__pill">
                 <ul class="site-nav__links">
@@ -47,48 +43,34 @@
                   <li><a href="#">Events</a></li>
                   <li><a href="#">Media</a></li>
                 </ul>
-        
+
                 <a href="#" class="site-nav__give">Give Online</a>
-        
-                <button
-                  class="site-nav__menu"
-                  type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#mobileMenu"
-                  aria-controls="mobileMenu"
-                  aria-label="Open menu"
-                >
+
+                <button class="site-nav__menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+                  aria-controls="mobileMenu" aria-label="Open menu">
                   <i class="bi bi-list"></i>
                 </button>
               </div>
-        
+
               <!-- Right account link -->
               <a href="#" class="site-nav__account">
                 <i class="bi bi-person" aria-hidden="true"></i>
                 <span>Create Account</span>
               </a>
-        
+
             </div>
           </nav>
-        
+
           <!-- Mobile offcanvas menu -->
-          <div
-            class="offcanvas offcanvas-end mobile-menu"
-            tabindex="-1"
-            id="mobileMenu"
-            aria-labelledby="mobileMenuLabel"
-          >
+          <div class="offcanvas offcanvas-end mobile-menu" tabindex="-1" id="mobileMenu"
+            aria-labelledby="mobileMenuLabel">
             <div class="offcanvas-header">
               <h2 class="offcanvas-title" id="mobileMenuLabel">Rock Solid</h2>
-        
-              <button
-                type="button"
-                class="btn-close btn-close-white"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close menu"
-              ></button>
+
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close menu"></button>
             </div>
-        
+
             <div class="offcanvas-body">
               <ul class="mobile-menu__links">
                 <li><a href="#" data-bs-dismiss="offcanvas">Plan A Visit</a></li>
@@ -98,10 +80,10 @@
                 <li><a href="#" data-bs-dismiss="offcanvas">Events</a></li>
                 <li><a href="#" data-bs-dismiss="offcanvas">Media</a></li>
               </ul>
-        
+
               <div class="mobile-menu__actions">
                 <a href="#" class="mobile-menu__give" data-bs-dismiss="offcanvas">Give Online</a>
-        
+
                 <a href="#" class="mobile-menu__account" data-bs-dismiss="offcanvas">
                   <i class="bi bi-person" aria-hidden="true"></i>
                   Create Account
@@ -128,33 +110,9 @@
           </div>
           <ul class="hero__social">
             <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="#" aria-label="X (Twitter)">
-              <svg class="footer__x-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
-                <path
-                  d="M33.218 28.102L42.159 17.75H40.04L32.276 26.735L26.078 17.75H18.926L28.302 31.344L18.926 42.198H21.045L29.243 32.711L35.792 42.198H42.944L33.218 28.102ZM30.316 31.462L29.366 30.109L21.808 19.342H25.063L31.162 28.029L32.112 29.382L40.041 40.677H36.786L30.316 31.462Z"
-                  fill="#2E2320" />
-              </svg>
-            </a></li>
-            <li><a href="#" aria-label="Instagram">
-              <svg class="footer__instagram-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
-                <path
-                  d="M29.8125 23.8105C33.1348 23.8105 35.877 26.5527 35.877 29.875C35.877 33.25 33.1348 35.9395 29.8125 35.9395C26.4375 35.9395 23.748 33.25 23.748 29.875C23.748 26.5527 26.4375 23.8105 29.8125 23.8105ZM29.8125 33.8301C31.9746 33.8301 33.7148 32.0898 33.7148 29.875C33.7148 27.7129 31.9746 25.9727 29.8125 25.9727C27.5977 25.9727 25.8574 27.7129 25.8574 29.875C25.8574 32.0898 27.6504 33.8301 29.8125 33.8301ZM37.5117 23.5996C37.5117 24.3906 36.8789 25.0234 36.0879 25.0234C35.2969 25.0234 34.6641 24.3906 34.6641 23.5996C34.6641 22.8086 35.2969 22.1758 36.0879 22.1758C36.8789 22.1758 37.5117 22.8086 37.5117 23.5996ZM41.5195 25.0234C41.625 26.9746 41.625 32.8281 41.5195 34.7793C41.4141 36.6777 40.9922 38.3125 39.6211 39.7363C38.25 41.1074 36.5625 41.5293 34.6641 41.6348C32.7129 41.7402 26.8594 41.7402 24.9082 41.6348C23.0098 41.5293 21.375 41.1074 19.9512 39.7363C18.5801 38.3125 18.1582 36.6777 18.0527 34.7793C17.9473 32.8281 17.9473 26.9746 18.0527 25.0234C18.1582 23.125 18.5801 21.4375 19.9512 20.0664C21.375 18.6953 23.0098 18.2734 24.9082 18.168C26.8594 18.0625 32.7129 18.0625 34.6641 18.168C36.5625 18.2734 38.25 18.6953 39.6211 20.0664C40.9922 21.4375 41.4141 23.125 41.5195 25.0234ZM38.9883 36.8359C39.6211 35.3066 39.4629 31.6152 39.4629 29.875C39.4629 28.1875 39.6211 24.4961 38.9883 22.9141C38.5664 21.9121 37.7754 21.0684 36.7734 20.6992C35.1914 20.0664 31.5 20.2246 29.8125 20.2246C28.0723 20.2246 24.3809 20.0664 22.8516 20.6992C21.7969 21.1211 21.0059 21.9121 20.584 22.9141C19.9512 24.4961 20.1094 28.1875 20.1094 29.875C20.1094 31.6152 19.9512 35.3066 20.584 36.8359C21.0059 37.8906 21.7969 38.6816 22.8516 39.1035C24.3809 39.7363 28.0723 39.5781 29.8125 39.5781C31.5 39.5781 35.1914 39.7363 36.7734 39.1035C37.7754 38.6816 38.6191 37.8906 38.9883 36.8359Z"
-                  fill="#2E2320" />
-              </svg>
-            </a></li>
-            <li><a href="#" aria-label="YouTube">
-              <svg class="footer__youtube-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
-                <path
-                  d="M42.4512 22.9668C43.084 25.1816 43.084 29.9277 43.084 29.9277C43.084 29.9277 43.084 34.6211 42.4512 36.8887C42.1348 38.1543 41.1328 39.1035 39.9199 39.4199C37.6523 40 28.6875 40 28.6875 40C28.6875 40 19.6699 40 17.4023 39.4199C16.1895 39.1035 15.1875 38.1543 14.8711 36.8887C14.2383 34.6211 14.2383 29.9277 14.2383 29.9277C14.2383 29.9277 14.2383 25.1816 14.8711 22.9668C15.1875 21.7012 16.1895 20.6992 17.4023 20.3828C19.6699 19.75 28.6875 19.75 28.6875 19.75C28.6875 19.75 37.6523 19.75 39.9199 20.3828C41.1328 20.6992 42.1348 21.7012 42.4512 22.9668ZM25.7344 34.1992L33.2227 29.9277L25.7344 25.6562V34.1992Z"
-                  fill="#2E2320" />
-              </svg>
-            </a></li>
+            <li><a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a></li>
+            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
           </ul>
         </div>
 
@@ -175,7 +133,7 @@
 
           <div class="col-lg-5">
             <p class="about__body mb-0">
-              Rock Solid Church is committed to creating a movement of disciple-making disciples—men and women who
+              Rock Solid Church is committed to creating a movement of disciple-making disciples, men and women who
               reflect
               the diversity of our community, lived out in authentic unity.
             </p>
@@ -213,109 +171,114 @@
           </svg>
           <div class="mission-band text-center text-white">
 
-          <h2 class="fw-bold mb-3">Our Mission is Simple</h2>
-          <p class="mission-band__intro mx-auto mb-5">
-            <strong>The gospel is the good news of Jesus:</strong> That Jesus lived a sinless life in my place, died the
-            death that
-          </p>
+            <h2 class="fw-bold mb-3">Our Mission is Simple</h2>
+            <p class="mission-band__intro mx-auto mb-5">
+              <strong>The gospel is the good news of Jesus:</strong> That Jesus lived a sinless life in my place, died
+              the
+              death that I deserved, and rose to life again.
+            </p>
 
-          <div class="row g-4 justify-content-center">
+            <div class="row g-4 justify-content-center">
 
-            <div class="col-12 col-md-6 col-lg-4">
-              <article class="card mission-card h-100 border-0">
-                <div class="card-body">
-                  <span class="mission-card__icon" aria-hidden="true">
-                    <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M114.887 48.528C113.609 40.7518 110.551 33.5998 106.45 26.9055C100.933 17.8937 93.7919 10.8709 84.7168 6.18684C82.3167 4.9431 79.776 3.86606 77.0994 2.959C70.2051 0.618607 63.1146 0.125033 55.9111 0.00735985C47.0274 -0.139732 38.6263 1.91792 31.0678 6.18521C30.7619 6.35845 30.4543 6.53496 30.1484 6.71637C22.4688 11.2795 16.1423 16.8494 11.298 23.4587C5.99229 30.7005 2.45518 39.1909 0.845316 48.9807C-0.42425 56.7079 -0.314635 64.373 1.521 71.994C3.06869 78.4121 5.84832 84.3219 9.23492 89.9474C9.8877 91.0277 10.5797 92.09 11.2996 93.1344C12.0931 94.2931 12.9209 95.4257 13.7667 96.542C14.7631 97.8626 15.8461 98.0293 16.7362 97.3543C17.6114 96.6858 17.5934 95.7232 16.674 94.2735C16.6216 94.1967 16.5627 94.1215 16.5153 94.0447C14.9578 91.5441 13.3217 89.0877 11.8559 86.5349C11.6677 86.2064 11.4828 85.8778 11.3012 85.5461C5.12356 74.2952 3.14068 62.2517 5.19063 49.5413C6.22134 43.1493 8.18131 37.0957 11.3012 31.5226C12.2649 29.7967 13.343 28.1149 14.539 26.4839C22.0974 16.1776 31.4719 9.28721 42.5021 6.18521C46.4826 5.06731 50.6774 4.43972 55.0783 4.32532C58.4093 4.51 60.757 4.59825 63.1015 4.7715C66.1772 5.0003 69.1384 5.47263 71.9819 6.18358C81.8554 8.64818 90.3219 13.9778 97.2865 21.9387C105.424 31.2415 110.206 42.2488 111.126 54.6977C111.919 65.4795 109.877 75.704 104.398 85.1179C102.453 88.4601 100.326 91.6945 98.2975 94.9894C97.8362 95.7412 97.401 96.4832 98.3499 97.2954C99.2955 98.1077 100.159 97.9671 100.917 97.199C101.715 96.3835 102.474 95.4911 103.073 94.5203C105.835 90.0242 108.737 85.5902 111.201 80.9307C113.892 75.8364 114.915 70.2191 115.37 64.4858C115.798 59.1415 115.754 53.8004 114.89 48.5247L114.887 48.528Z"
-                        fill="#2E2320" />
-                      <path
-                        d="M38.0879 46C38.0879 43.3478 39.1415 40.8043 41.0168 38.9289C42.8922 37.0536 45.4357 36 48.0879 36H68.0879C70.7401 36 73.2836 37.0536 75.159 38.9289C77.0343 40.8043 78.0879 43.3478 78.0879 46V66C78.0879 68.6522 77.0343 71.1957 75.159 73.0711C73.2836 74.9464 70.7401 76 68.0879 76H48.0879C45.4357 76 42.8922 74.9464 41.0168 73.0711C39.1415 71.1957 38.0879 68.6522 38.0879 66V46Z"
-                        stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M54.7546 51V61L63.0879 56L54.7546 51Z" stroke="#EB3300" stroke-width="4"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </span>
+              <div class="col-12 col-md-6 col-lg-4">
+                <article class="card mission-card h-100 border-0">
+                  <div class="card-body">
+                    <span class="mission-card__icon" aria-hidden="true">
+                      <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M114.887 48.528C113.609 40.7518 110.551 33.5998 106.45 26.9055C100.933 17.8937 93.7919 10.8709 84.7168 6.18684C82.3167 4.9431 79.776 3.86606 77.0994 2.959C70.2051 0.618607 63.1146 0.125033 55.9111 0.00735985C47.0274 -0.139732 38.6263 1.91792 31.0678 6.18521C30.7619 6.35845 30.4543 6.53496 30.1484 6.71637C22.4688 11.2795 16.1423 16.8494 11.298 23.4587C5.99229 30.7005 2.45518 39.1909 0.845316 48.9807C-0.42425 56.7079 -0.314635 64.373 1.521 71.994C3.06869 78.4121 5.84832 84.3219 9.23492 89.9474C9.8877 91.0277 10.5797 92.09 11.2996 93.1344C12.0931 94.2931 12.9209 95.4257 13.7667 96.542C14.7631 97.8626 15.8461 98.0293 16.7362 97.3543C17.6114 96.6858 17.5934 95.7232 16.674 94.2735C16.6216 94.1967 16.5627 94.1215 16.5153 94.0447C14.9578 91.5441 13.3217 89.0877 11.8559 86.5349C11.6677 86.2064 11.4828 85.8778 11.3012 85.5461C5.12356 74.2952 3.14068 62.2517 5.19063 49.5413C6.22134 43.1493 8.18131 37.0957 11.3012 31.5226C12.2649 29.7967 13.343 28.1149 14.539 26.4839C22.0974 16.1776 31.4719 9.28721 42.5021 6.18521C46.4826 5.06731 50.6774 4.43972 55.0783 4.32532C58.4093 4.51 60.757 4.59825 63.1015 4.7715C66.1772 5.0003 69.1384 5.47263 71.9819 6.18358C81.8554 8.64818 90.3219 13.9778 97.2865 21.9387C105.424 31.2415 110.206 42.2488 111.126 54.6977C111.919 65.4795 109.877 75.704 104.398 85.1179C102.453 88.4601 100.326 91.6945 98.2975 94.9894C97.8362 95.7412 97.401 96.4832 98.3499 97.2954C99.2955 98.1077 100.159 97.9671 100.917 97.199C101.715 96.3835 102.474 95.4911 103.073 94.5203C105.835 90.0242 108.737 85.5902 111.201 80.9307C113.892 75.8364 114.915 70.2191 115.37 64.4858C115.798 59.1415 115.754 53.8004 114.89 48.5247L114.887 48.528Z"
+                          fill="#2E2320" />
+                        <path
+                          d="M38.0879 46C38.0879 43.3478 39.1415 40.8043 41.0168 38.9289C42.8922 37.0536 45.4357 36 48.0879 36H68.0879C70.7401 36 73.2836 37.0536 75.159 38.9289C77.0343 40.8043 78.0879 43.3478 78.0879 46V66C78.0879 68.6522 77.0343 71.1957 75.159 73.0711C73.2836 74.9464 70.7401 76 68.0879 76H48.0879C45.4357 76 42.8922 74.9464 41.0168 73.0711C39.1415 71.1957 38.0879 68.6522 38.0879 66V46Z"
+                          stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M54.7546 51V61L63.0879 56L54.7546 51Z" stroke="#EB3300" stroke-width="4"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
 
-                  <h3 class="h5 fw-bold mt-3">Watch a Message</h3>
-                  <p class="text-muted">Catch up on the latest and past weekend service messages anytime, anywhere.</p>
-                  <a href="#" class="mission-card__link">Catch Our Latest Message</a>
-                </div>
-              </article>
+                    <h3 class="h5 fw-bold mt-3">Watch a Message</h3>
+                    <p class="text-muted">Catch up on the latest and past weekend service messages anytime, anywhere.
+                    </p>
+                    <a href="#" class="mission-card__link">Catch Our Latest Message</a>
+                  </div>
+                </article>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-4">
+                <article class="card mission-card h-100 border-0">
+                  <div class="card-body">
+                    <span class="mission-card__icon" aria-hidden="true">
+                      <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M114.887 48.528C113.609 40.7518 110.551 33.5998 106.45 26.9055C100.933 17.8937 93.7919 10.8709 84.7168 6.18684C82.3167 4.9431 79.776 3.86606 77.0994 2.959C70.2051 0.618607 63.1146 0.125033 55.9111 0.00735985C47.0274 -0.139732 38.6263 1.91792 31.0678 6.18521C30.7619 6.35845 30.4543 6.53496 30.1484 6.71637C22.4688 11.2795 16.1423 16.8494 11.298 23.4587C5.99229 30.7005 2.45518 39.1909 0.845316 48.9807C-0.42425 56.7079 -0.314635 64.373 1.521 71.994C3.06869 78.4121 5.84832 84.3219 9.23492 89.9474C9.8877 91.0277 10.5797 92.09 11.2996 93.1344C12.0931 94.2931 12.9209 95.4257 13.7667 96.542C14.7631 97.8626 15.8461 98.0293 16.7362 97.3543C17.6114 96.6858 17.5934 95.7232 16.674 94.2735C16.6216 94.1967 16.5627 94.1215 16.5153 94.0447C14.9578 91.5441 13.3217 89.0877 11.8559 86.5349C11.6677 86.2064 11.4828 85.8778 11.3012 85.5461C5.12356 74.2952 3.14068 62.2517 5.19063 49.5413C6.22134 43.1493 8.18131 37.0957 11.3012 31.5226C12.2649 29.7967 13.343 28.1149 14.539 26.4839C22.0974 16.1776 31.4719 9.28721 42.5021 6.18521C46.4826 5.06731 50.6774 4.43972 55.0783 4.32532C58.4093 4.51 60.757 4.59825 63.1015 4.7715C66.1772 5.0003 69.1384 5.47263 71.9819 6.18358C81.8554 8.64818 90.3219 13.9778 97.2865 21.9387C105.424 31.2415 110.206 42.2488 111.126 54.6977C111.919 65.4795 109.877 75.704 104.398 85.1179C102.453 88.4601 100.326 91.6945 98.2975 94.9894C97.8362 95.7412 97.401 96.4832 98.3499 97.2954C99.2955 98.1077 100.159 97.9671 100.917 97.199C101.715 96.3835 102.474 95.4911 103.073 94.5203C105.835 90.0242 108.737 85.5902 111.201 80.9307C113.892 75.8364 114.915 70.2191 115.37 64.4858C115.798 59.1415 115.754 53.8004 114.89 48.5247L114.887 48.528Z"
+                          fill="#2E2320" />
+
+                        <path
+                          d="M51 54.6667C51 56.5232 51.7375 58.3037 53.0503 59.6165C54.363 60.9292 56.1435 61.6667 58 61.6667C59.8565 61.6667 61.637 60.9292 62.9497 59.6165C64.2625 58.3037 65 56.5232 65 54.6667C65 52.8102 64.2625 51.0297 62.9497 49.717C61.637 48.4042 59.8565 47.6667 58 47.6667C56.1435 47.6667 54.363 48.4042 53.0503 49.717C51.7375 51.0297 51 52.8102 51 54.6667Z"
+                          stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+                        <path
+                          d="M71.199 67.8663L61.299 77.7663C60.424 78.6403 59.238 79.1313 58.001 79.1313C56.764 79.1313 55.578 78.6403 54.703 77.7663L44.8 67.8663C42.19 65.2557 40.412 61.9296 39.692 58.3086C38.972 54.6877 39.341 50.9345 40.754 47.5237C42.167 44.1128 44.56 41.1975 47.629 39.1465C50.699 37.0954 54.308 36.0006 58 36.0006C61.692 36.0006 65.301 37.0954 68.37 39.1465C71.44 41.1975 73.833 44.1128 75.245 47.5237C76.658 50.9345 77.028 54.6877 76.308 58.3086C75.588 61.9296 73.81 65.2557 71.199 67.8663Z"
+                          stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+
+                    <h3 class="h5 fw-bold mt-3">Find a Location</h3>
+                    <p class="text-muted">Easily find a campus near you. Join us in person and get connected.</p>
+                    <a href="#" class="mission-card__link">Search Our Campuses</a>
+                  </div>
+                </article>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-4">
+                <article class="card mission-card h-100 border-0">
+                  <div class="card-body">
+                    <span class="mission-card__icon" aria-hidden="true">
+                      <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M114.887 48.528C113.609 40.7518 110.551 33.5998 106.45 26.9055C100.933 17.8937 93.7919 10.8709 84.7168 6.18684C82.3167 4.9431 79.776 3.86606 77.0994 2.959C70.2051 0.618607 63.1146 0.125033 55.9111 0.00735985C47.0274 -0.139732 38.6263 1.91792 31.0678 6.18521C30.7619 6.35845 30.4543 6.53496 30.1484 6.71637C22.4688 11.2795 16.1423 16.8494 11.298 23.4587C5.99229 30.7005 2.45518 39.1909 0.845316 48.9807C-0.42425 56.7079 -0.314635 64.373 1.521 71.994C3.06869 78.4121 5.84832 84.3219 9.23492 89.9474C9.8877 91.0277 10.5797 92.09 11.2996 93.1344C12.0931 94.2931 12.9209 95.4257 13.7667 96.542C14.7631 97.8626 15.8461 98.0293 16.7362 97.3543C17.6114 96.6858 17.5934 95.7232 16.674 94.2735C16.6216 94.1967 16.5627 94.1215 16.5153 94.0447C14.9578 91.5441 13.3217 89.0877 11.8559 86.5349C11.6677 86.2064 11.4828 85.8778 11.3012 85.5461C5.12356 74.2952 3.14068 62.2517 5.19063 49.5413C6.22134 43.1493 8.18131 37.0957 11.3012 31.5226C12.2649 29.7967 13.343 28.1149 14.539 26.4839C22.0974 16.1776 31.4719 9.28721 42.5021 6.18521C46.4826 5.06731 50.6774 4.43972 55.0783 4.32532C58.4093 4.51 60.757 4.59825 63.1015 4.7715C66.1772 5.0003 69.1384 5.47263 71.9819 6.18358C81.8554 8.64818 90.3219 13.9778 97.2865 21.9387C105.424 31.2415 110.206 42.2488 111.126 54.6977C111.919 65.4795 109.877 75.704 104.398 85.1179C102.453 88.4601 100.326 91.6945 98.2975 94.9894C97.8362 95.7412 97.401 96.4832 98.3499 97.2954C99.2955 98.1077 100.159 97.9671 100.917 97.199C101.715 96.3835 102.474 95.4911 103.073 94.5203C105.835 90.0242 108.737 85.5902 111.201 80.9307C113.892 75.8364 114.915 70.2191 115.37 64.4858C115.798 59.1415 115.754 53.8004 114.89 48.5247L114.887 48.528Z"
+                          fill="#2E2320" />
+                        <path
+                          d="M53.4214 60.6667L79.0881 35M79.0881 35L37.0871 50.1667C36.8637 50.269 36.6744 50.4334 36.5417 50.6402C36.4089 50.847 36.3384 51.0876 36.3384 51.3333C36.3384 51.5791 36.4089 51.8196 36.5417 52.0265C36.6744 52.2333 36.8637 52.3976 37.0871 52.5L53.4214 60.6667L61.5871 77C61.6895 77.2234 61.8538 77.4127 62.0606 77.5454C62.2674 77.6781 62.508 77.7487 62.7537 77.7487C62.9995 77.7487 63.2401 77.6781 63.4469 77.5454C63.6537 77.4127 63.818 77.2234 63.9204 77L79.0881 35Z"
+                          stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </span>
+
+                    <h3 class="h5 fw-bold mt-3">Get Connected</h3>
+                    <p class="text-muted">
+                      Stay connected and in the loop: sign up for updates, events, and ways to get involved.
+                    </p>
+                    <a href="#" class="mission-card__link">Contact Us</a>
+                  </div>
+                </article>
+              </div>
+
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
-              <article class="card mission-card h-100 border-0">
-                <div class="card-body">
-                  <span class="mission-card__icon" aria-hidden="true">
-                    <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M114.887 48.528C113.609 40.7518 110.551 33.5998 106.45 26.9055C100.933 17.8937 93.7919 10.8709 84.7168 6.18684C82.3167 4.9431 79.776 3.86606 77.0994 2.959C70.2051 0.618607 63.1146 0.125033 55.9111 0.00735985C47.0274 -0.139732 38.6263 1.91792 31.0678 6.18521C30.7619 6.35845 30.4543 6.53496 30.1484 6.71637C22.4688 11.2795 16.1423 16.8494 11.298 23.4587C5.99229 30.7005 2.45518 39.1909 0.845316 48.9807C-0.42425 56.7079 -0.314635 64.373 1.521 71.994C3.06869 78.4121 5.84832 84.3219 9.23492 89.9474C9.8877 91.0277 10.5797 92.09 11.2996 93.1344C12.0931 94.2931 12.9209 95.4257 13.7667 96.542C14.7631 97.8626 15.8461 98.0293 16.7362 97.3543C17.6114 96.6858 17.5934 95.7232 16.674 94.2735C16.6216 94.1967 16.5627 94.1215 16.5153 94.0447C14.9578 91.5441 13.3217 89.0877 11.8559 86.5349C11.6677 86.2064 11.4828 85.8778 11.3012 85.5461C5.12356 74.2952 3.14068 62.2517 5.19063 49.5413C6.22134 43.1493 8.18131 37.0957 11.3012 31.5226C12.2649 29.7967 13.343 28.1149 14.539 26.4839C22.0974 16.1776 31.4719 9.28721 42.5021 6.18521C46.4826 5.06731 50.6774 4.43972 55.0783 4.32532C58.4093 4.51 60.757 4.59825 63.1015 4.7715C66.1772 5.0003 69.1384 5.47263 71.9819 6.18358C81.8554 8.64818 90.3219 13.9778 97.2865 21.9387C105.424 31.2415 110.206 42.2488 111.126 54.6977C111.919 65.4795 109.877 75.704 104.398 85.1179C102.453 88.4601 100.326 91.6945 98.2975 94.9894C97.8362 95.7412 97.401 96.4832 98.3499 97.2954C99.2955 98.1077 100.159 97.9671 100.917 97.199C101.715 96.3835 102.474 95.4911 103.073 94.5203C105.835 90.0242 108.737 85.5902 111.201 80.9307C113.892 75.8364 114.915 70.2191 115.37 64.4858C115.798 59.1415 115.754 53.8004 114.89 48.5247L114.887 48.528Z"
-                        fill="#2E2320" />
-
-                      <path
-                        d="M51 54.6667C51 56.5232 51.7375 58.3037 53.0503 59.6165C54.363 60.9292 56.1435 61.6667 58 61.6667C59.8565 61.6667 61.637 60.9292 62.9497 59.6165C64.2625 58.3037 65 56.5232 65 54.6667C65 52.8102 64.2625 51.0297 62.9497 49.717C61.637 48.4042 59.8565 47.6667 58 47.6667C56.1435 47.6667 54.363 48.4042 53.0503 49.717C51.7375 51.0297 51 52.8102 51 54.6667Z"
-                        stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-
-                      <path
-                        d="M71.199 67.8663L61.299 77.7663C60.424 78.6403 59.238 79.1313 58.001 79.1313C56.764 79.1313 55.578 78.6403 54.703 77.7663L44.8 67.8663C42.19 65.2557 40.412 61.9296 39.692 58.3086C38.972 54.6877 39.341 50.9345 40.754 47.5237C42.167 44.1128 44.56 41.1975 47.629 39.1465C50.699 37.0954 54.308 36.0006 58 36.0006C61.692 36.0006 65.301 37.0954 68.37 39.1465C71.44 41.1975 73.833 44.1128 75.245 47.5237C76.658 50.9345 77.028 54.6877 76.308 58.3086C75.588 61.9296 73.81 65.2557 71.199 67.8663Z"
-                        stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </span>
-
-                  <h3 class="h5 fw-bold mt-3">Find a Location</h3>
-                  <p class="text-muted">Easily find a campus near you. Join us in person and get connected.</p>
-                  <a href="#" class="mission-card__link">Search Our Campuses</a>
-                </div>
-              </article>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4">
-              <article class="card mission-card h-100 border-0">
-                <div class="card-body">
-                  <span class="mission-card__icon" aria-hidden="true">
-                    <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M114.887 48.528C113.609 40.7518 110.551 33.5998 106.45 26.9055C100.933 17.8937 93.7919 10.8709 84.7168 6.18684C82.3167 4.9431 79.776 3.86606 77.0994 2.959C70.2051 0.618607 63.1146 0.125033 55.9111 0.00735985C47.0274 -0.139732 38.6263 1.91792 31.0678 6.18521C30.7619 6.35845 30.4543 6.53496 30.1484 6.71637C22.4688 11.2795 16.1423 16.8494 11.298 23.4587C5.99229 30.7005 2.45518 39.1909 0.845316 48.9807C-0.42425 56.7079 -0.314635 64.373 1.521 71.994C3.06869 78.4121 5.84832 84.3219 9.23492 89.9474C9.8877 91.0277 10.5797 92.09 11.2996 93.1344C12.0931 94.2931 12.9209 95.4257 13.7667 96.542C14.7631 97.8626 15.8461 98.0293 16.7362 97.3543C17.6114 96.6858 17.5934 95.7232 16.674 94.2735C16.6216 94.1967 16.5627 94.1215 16.5153 94.0447C14.9578 91.5441 13.3217 89.0877 11.8559 86.5349C11.6677 86.2064 11.4828 85.8778 11.3012 85.5461C5.12356 74.2952 3.14068 62.2517 5.19063 49.5413C6.22134 43.1493 8.18131 37.0957 11.3012 31.5226C12.2649 29.7967 13.343 28.1149 14.539 26.4839C22.0974 16.1776 31.4719 9.28721 42.5021 6.18521C46.4826 5.06731 50.6774 4.43972 55.0783 4.32532C58.4093 4.51 60.757 4.59825 63.1015 4.7715C66.1772 5.0003 69.1384 5.47263 71.9819 6.18358C81.8554 8.64818 90.3219 13.9778 97.2865 21.9387C105.424 31.2415 110.206 42.2488 111.126 54.6977C111.919 65.4795 109.877 75.704 104.398 85.1179C102.453 88.4601 100.326 91.6945 98.2975 94.9894C97.8362 95.7412 97.401 96.4832 98.3499 97.2954C99.2955 98.1077 100.159 97.9671 100.917 97.199C101.715 96.3835 102.474 95.4911 103.073 94.5203C105.835 90.0242 108.737 85.5902 111.201 80.9307C113.892 75.8364 114.915 70.2191 115.37 64.4858C115.798 59.1415 115.754 53.8004 114.89 48.5247L114.887 48.528Z"
-                        fill="#2E2320" />
-                      <path
-                        d="M53.4214 60.6667L79.0881 35M79.0881 35L37.0871 50.1667C36.8637 50.269 36.6744 50.4334 36.5417 50.6402C36.4089 50.847 36.3384 51.0876 36.3384 51.3333C36.3384 51.5791 36.4089 51.8196 36.5417 52.0265C36.6744 52.2333 36.8637 52.3976 37.0871 52.5L53.4214 60.6667L61.5871 77C61.6895 77.2234 61.8538 77.4127 62.0606 77.5454C62.2674 77.6781 62.508 77.7487 62.7537 77.7487C62.9995 77.7487 63.2401 77.6781 63.4469 77.5454C63.6537 77.4127 63.818 77.2234 63.9204 77L79.0881 35Z"
-                        stroke="#EB3300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </span>
-
-                  <h3 class="h5 fw-bold mt-3">Get Connected</h3>
-                  <p class="text-muted">
-                    Stay connected and in the loop—sign up for updates, events, and ways to get involved.
-                  </p>
-                  <a href="#" class="mission-card__link">Contact Us</a>
-                </div>
-              </article>
-            </div>
-
-          </div>
-
-          <!-- GOSPEL subsection (still inside the orange panel) -->
-          <div class="mission-gospel text-start mt-5">
-            <div class="mission-gospel__copy">
-              <p class="mission-gospel__eyebrow text-uppercase mb-3">Gospel</p>
-              <div class="row g-4 align-items-start">
-                <div class="col-lg-7">
-                  <h3 class="mission-gospel__heading fw-bold mb-0">The gospel is what should characterize us. It should be
-                    our identity: We are a gospel people.</h3>
-                </div>
-                <div class="col-lg-5">
-                  <p class="mission-gospel__body mb-0"><strong>The gospel is the good news of Jesus:</strong> That Jesus
-                    lived a sinless life in my place, died the death that I deserved, and rose to life again. And whoever
-                    believes in him has eternal life.</p>
+            <!-- GOSPEL subsection (still inside the orange panel) -->
+            <div class="mission-gospel text-start mt-5">
+              <div class="mission-gospel__copy">
+                <p class="mission-gospel__eyebrow text-uppercase mb-3">Gospel</p>
+                <div class="row g-4 align-items-start">
+                  <div class="col-lg-7">
+                    <h3 class="mission-gospel__heading fw-bold mb-0">The gospel is what should characterize us. It
+                      should be
+                      our identity: We are a gospel people.</h3>
+                  </div>
+                  <div class="col-lg-5">
+                    <p class="mission-gospel__body mb-0"><strong>The gospel is the good news of Jesus:</strong> That
+                      Jesus
+                      lived a sinless life in my place, died the death that I deserved, and rose to life again. And
+                      whoever
+                      believes in him has eternal life.</p>
+                  </div>
                 </div>
               </div>
+              <img src="images/art-watercolor-disciples.jpg" alt="Watercolor of Jesus' disciples gathered by the sea"
+                class="mission-gospel__art mt-4">
             </div>
-            <img src="images/art-watercolor-disciples.jpg" alt="Watercolor of Jesus' disciples gathered by the sea"
-              class="mission-gospel__art mt-4">
-          </div>
 
-        </div>
+          </div>
         </div>
       </div>
     </section>
@@ -337,7 +300,7 @@
         <h2 class="fw-bold mt-3">Find a Place to Volunteer</h2>
 
         <p class="text-muted volunteer__subcopy mx-auto">
-          Explore our ministries—find your place, grow in faith, and connect with a vibrant community!
+          Explore our ministries: find your place, grow in faith, and connect with a vibrant community!
         </p>
 
         <!-- Swiper requires this exact nesting: .swiper > .swiper-wrapper > .swiper-slide -->
@@ -423,12 +386,12 @@
                   <figure class="story m-0">
                     <img src="images/story-by-any-means.jpg" alt="A woman whose life was changed"
                       class="story__img story__img--short">
-                    <figcaption class="story__caption">By Any Means Necessary</figcaption>
+                    <figcaption class="story__subcaption">By Any Means Necessary</figcaption>
                   </figure>
                   <figure class="story m-0">
                     <img src="images/story-holding-on-to-hope.png" alt="A woman holding on to hope"
                       class="story__img story__img--short">
-                    <figcaption class="story__caption">Holding on to Hope</figcaption>
+                    <figcaption class="story__subcaption">Holding on to Hope</figcaption>
                   </figure>
                 </div>
 
@@ -452,14 +415,14 @@
           <p class="footer__phone mb-3">(000) 000-0000</p>
           <ul class="footer__social list-unstyled d-flex gap-3 mb-0">
             <li><a href="#" aria-label="Facebook">
-              <svg class="footer__facebook-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
-                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
-                <path
-                  d="M35.7129 31.5625H31.7578V43.375H26.4844V31.5625H22.1602V26.7109H26.4844V22.9668C26.4844 18.748 29.0156 16.375 32.8652 16.375C34.7109 16.375 36.6621 16.7441 36.6621 16.7441V20.9102H34.5C32.3906 20.9102 31.7578 22.1758 31.7578 23.5469V26.7109H36.4512L35.7129 31.5625Z"
-                  fill="#2E2320" />
-              </svg>
-            </a></li>
+                <svg class="footer__facebook-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
+                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
+                  <path
+                    d="M35.7129 31.5625H31.7578V43.375H26.4844V31.5625H22.1602V26.7109H26.4844V22.9668C26.4844 18.748 29.0156 16.375 32.8652 16.375C34.7109 16.375 36.6621 16.7441 36.6621 16.7441V20.9102H34.5C32.3906 20.9102 31.7578 22.1758 31.7578 23.5469V26.7109H36.4512L35.7129 31.5625Z"
+                    fill="#2E2320" />
+                </svg>
+              </a></li>
             <li><a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a></li>
             <li><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></li>
             <li><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a></li>
