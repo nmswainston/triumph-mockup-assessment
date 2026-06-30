@@ -43,7 +43,9 @@ img {
   background-color: var(--dark);
   color: #fff;
   border-radius: 8px;
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
   font-weight: 600;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
@@ -132,18 +134,25 @@ img {
   justify-self: center;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem;
+  gap: 32px;
+  padding: 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+}
+
+.site-nav__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .site-nav__links {
   display: flex;
   align-items: center;
-  gap: 0.15rem;
+  gap: 10px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -153,7 +162,7 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
+  min-height: 44px;
   padding: 0 0.95rem;
   border-radius: 999px;
   color: #fff;
@@ -175,7 +184,7 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
+  min-height: 47px;
   padding: 0 1.15rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.28);
@@ -195,8 +204,8 @@ img {
 }
 
 .site-nav__menu {
-  width: 38px;
-  height: 38px;
+  width: 47px;
+  height: 47px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -381,6 +390,8 @@ img {
   color: var(--ink);
   border-radius: 8px;
   padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.1;
   font-weight: 600;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
@@ -397,6 +408,8 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 8px;
   padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.1;
   font-weight: 600;
   backdrop-filter: blur(100px);
   -webkit-backdrop-filter: blur(100px);
@@ -685,11 +698,6 @@ img {
 
 /* ===== Our Mission is Simple (orange card band) ===== */
 
-/* Section spacing comes from Bootstrap utilities in the markup:
-   section .p-3 (1rem gutter) + .container-fluid .p-0 (full-bleed band). */
-
-/* Wrapper exists so the decorative tab can sit ABOVE the band's top edge
-   without being clipped by the band's own overflow: hidden. */
 .mission-band-wrap {
   position: relative;
   width: 100%;
@@ -957,6 +965,13 @@ img {
   color: #192C4066;
 }
 
+/* The tagline CTA is the large hero variant (178x60 in Figma) */
+#tagline .btn-dark-solid {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
 /* ===== Find a Place to Volunteer (ministry carousel) ===== */
 
 .volunteer__icon {
@@ -1013,11 +1028,16 @@ img {
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
+  text-align: left;
   color: var(--ink);
 }
 
 .ministry-swiper .swiper-slide-active .ministry-tile__label {
   color: var(--orange);
+}
+
+.ministry-swiper .swiper-slide-active .ministry-tile__label::after {
+  content: " ›";
 }
 
 .ministry-swiper .swiper-pagination-bullet-active {
@@ -1076,7 +1096,9 @@ img {
   background-color: var(--orange);
   color: #fff;
   border-radius: 8px;
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
   font-weight: 600;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
@@ -1302,9 +1324,11 @@ img {
 .btn-footer-outline {
   background-color: transparent;
   color: var(--ink);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid #2E2E2E;
   border-radius: 8px;
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
   font-weight: 600;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
