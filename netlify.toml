@@ -2,6 +2,13 @@
 [build]
   publish = "."
 
+# Browsers auto-request /favicon.ico from the root; serve the SVG there so the
+# legacy probe resolves (200) instead of 404ing.
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon.svg"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
