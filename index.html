@@ -124,20 +124,14 @@
       <div class="about-container">
         <p class="eyebrow mb-3">Welcome to Rock Solid</p>
 
-        <div class="row g-4 g-lg-5 align-items-start">
-          <div class="col-lg-7">
-            <h2 class="about__heading mb-0">
-              Following the Holy Spirit, we exist to create a movement of disciple-making disciples.
-            </h2>
-          </div>
-
-          <div class="col-lg-5">
-            <p class="about__body mb-0">
-              Rock Solid Church is committed to creating a movement of disciple-making disciples, men and women who
-              reflect
-              the diversity of our community, lived out in authentic unity.
-            </p>
-          </div>
+        <div class="about__cols">
+          <h2 class="about__heading mb-0">
+            Following the Holy Spirit, we exist to create a movement of disciple-making disciples.
+          </h2>
+          <p class="about__body mb-0">
+            Rock Solid Church is committed to creating a movement of disciple-making disciples, men and women who
+            reflect the diversity of our community, lived out in authentic unity.
+          </p>
         </div>
 
         <img src="images/art-watercolor-cross.jpg" alt="Watercolor of Jesus carrying the cross" class="about__art mt-4">
@@ -285,6 +279,8 @@
 
     <!-- ===== Tagline ===== -->
     <section id="tagline" class="py-5 text-center">
+      <span class="tagline__mark tagline__mark--h" aria-hidden="true"></span>
+      <span class="tagline__mark tagline__mark--v" aria-hidden="true"></span>
       <div class="container">
         <h2 class="tagline__heading mb-4">Rock Solid Church continues to hold out <span
             class="tagline__accent">love</span> <span class="tagline__muted">and hope to the entire world.</span></h2>
@@ -406,66 +402,72 @@
   </main>
 
   <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__content">
-        <div class="footer__brand">
-          <img src="images/logo-rocksolid-full.svg" alt="Rock Solid Christian Church" class="footer__logo mb-3">
-          <address class="footer__address mb-2">11340 W. Bell Road, Suite 200<br>
-            Surprise, AZ 85378</address>
-          <p class="footer__phone mb-3">(000) 000-0000</p>
-          <ul class="footer__social list-unstyled d-flex gap-3 mb-0">
-            <li><a href="#" aria-label="Facebook">
-                <svg class="footer__facebook-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
-                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                  <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
-                  <path
-                    d="M35.7129 31.5625H31.7578V43.375H26.4844V31.5625H22.1602V26.7109H26.4844V22.9668C26.4844 18.748 29.0156 16.375 32.8652 16.375C34.7109 16.375 36.6621 16.7441 36.6621 16.7441V20.9102H34.5C32.3906 20.9102 31.7578 22.1758 31.7578 23.5469V26.7109H36.4512L35.7129 31.5625Z"
-                    fill="#2E2320" />
-                </svg>
-              </a></li>
-            <li><a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a></li>
-            <li><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></li>
-            <li><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a></li>
-          </ul>
-        </div>
-
-        <div class="footer__nav">
-          <div class="footer__actions">
-            <a href="#" class="btn btn-dark-solid text-uppercase">Plan a Visit</a>
-            <a href="#" class="btn btn-footer-outline">Log In</a>
-          </div>
-
-          <div class="footer__columns">
-            <div class="footer__column">
-              <h3 class="footer__heading">Quick Links</h3>
-              <ul class="footer__links list-unstyled mb-0">
-                <li><a href="#">About Rock Solid</a></li>
-                <li><a href="#">Locations</a></li>
-                <li><a href="#">Events</a></li>
-                <li><a href="#">Messages</a></li>
-                <li><a href="#">Ministries</a></li>
-                <li><a href="#">Serving</a></li>
+    <div class="container-fluid px-3">
+      <div class="footer__card">
+        <div class="footer__inner">
+          <div class="footer__content">
+            <div class="footer__brand">
+              <img src="images/logo-rocksolid-full.svg" alt="Rock Solid Christian Church" class="footer__logo">
+              <div class="footer__contact">
+                <address class="footer__address mb-0">11340 W. Bell Road, Suite 200<br>
+                  Surprise, AZ 85378</address>
+                <p class="footer__phone mb-0">(000) 000-0000</p>
+              </div>
+              <ul class="footer__social list-unstyled d-flex gap-3 mb-0">
+                <li><a href="#" aria-label="Facebook">
+                    <svg class="footer__facebook-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                      <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
+                      <path
+                        d="M35.7129 31.5625H31.7578V43.375H26.4844V31.5625H22.1602V26.7109H26.4844V22.9668C26.4844 18.748 29.0156 16.375 32.8652 16.375C34.7109 16.375 36.6621 16.7441 36.6621 16.7441V20.9102H34.5C32.3906 20.9102 31.7578 22.1758 31.7578 23.5469V26.7109H36.4512L35.7129 31.5625Z"
+                        fill="#2E2320" />
+                    </svg>
+                  </a></li>
+                <li><a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a></li>
+                <li><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></li>
+                <li><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a></li>
               </ul>
             </div>
-            <div class="footer__column">
-              <h3 class="footer__heading">Get In Touch</h3>
-              <ul class="footer__links list-unstyled mb-0">
-                <li><a href="#">Plan a Visit Request</a></li>
-                <li><a href="#">Prayer</a></li>
-                <li><a href="#">Get Help</a></li>
-                <li><a href="#">Job Openings</a></li>
-                <li><a href="#">Report an Issue</a></li>
-              </ul>
+
+            <div class="footer__nav">
+              <div class="footer__actions">
+                <a href="#" class="btn btn-dark-solid text-uppercase">Plan a Visit</a>
+                <a href="#" class="btn btn-footer-outline">Log In</a>
+              </div>
+
+              <div class="footer__columns">
+                <div class="footer__column">
+                  <h3 class="footer__heading">Quick Links</h3>
+                  <ul class="footer__links list-unstyled mb-0">
+                    <li><a href="#">About Rock Solid</a></li>
+                    <li><a href="#">Locations</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Messages</a></li>
+                    <li><a href="#">Ministries</a></li>
+                    <li><a href="#">Serving</a></li>
+                  </ul>
+                </div>
+                <div class="footer__column">
+                  <h3 class="footer__heading">Get In Touch</h3>
+                  <ul class="footer__links list-unstyled mb-0">
+                    <li><a href="#">Plan a Visit Request</a></li>
+                    <li><a href="#">Prayer</a></li>
+                    <li><a href="#">Get Help</a></li>
+                    <li><a href="#">Job Openings</a></li>
+                    <li><a href="#">Report an Issue</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="footer__bottom">
-        <p class="mb-0">© 2025 &nbsp;|&nbsp;
-          <a href="#">Terms of Service</a> &nbsp;|&nbsp;
-          <a href="#">Privacy Policy</a>
-        </p>
+          <div class="footer__bottom">
+            <p class="mb-0">© 2025 &nbsp;|&nbsp;
+              <a href="#">Terms of Service</a> &nbsp;|&nbsp;
+              <a href="#">Privacy Policy</a>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
