@@ -972,6 +972,20 @@ img {
   line-height: 1.1;
 }
 
+/* The shorter mobile/tablet sections push the centered heading up toward the
+   top mark, so lift the mark clear of the text at those widths */
+@media (max-width: 991.98px) {
+  .tagline__mark--h {
+    top: 40px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .tagline__mark--h {
+    top: 16px;
+  }
+}
+
 /* ===== Find a Place to Volunteer (ministry carousel) ===== */
 
 .volunteer__icon {
