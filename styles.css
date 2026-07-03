@@ -1,6 +1,9 @@
 /* ===== Design tokens ===== */
 :root {
   --orange: #EB3300;
+  /* Slightly darker orange for small text on white: #EB3300 is 4.2:1, just
+     under the WCAG AA 4.5:1 minimum; #D93000 clears it at 4.8:1. */
+  --orange-text: #D93000;
   --orange-dark: #c42a00;
   --bg: #ffffff;
   --ink: #1a1d21;
@@ -19,6 +22,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -35,6 +44,30 @@ img {
 
 .container {
   max-width: 1280px;
+}
+
+/* ===== Scroll reveal =====
+   main.js adds .reveal (hidden state) to [data-reveal] elements, then swaps in
+   .is-visible as each scrolls into view. Because the hidden state is applied by
+   JS, content stays visible if JS is off, and reduced-motion users opt out. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ===== Shared buttons ===== */
@@ -65,7 +98,11 @@ img {
 
 .hero__card {
   position: relative;
+  /* svh = viewport height with the mobile browser UI visible, so the
+     countdown and social row fit on screen at load. The vh line above it
+     is the fallback for browsers that predate svh. */
   min-height: calc(100vh - 2rem);
+  min-height: calc(100svh - 2rem);
   display: flex;
   flex-direction: column;
   padding: 1rem clamp(1rem, 4vw, 3rem) 2rem;
@@ -494,7 +531,19 @@ img {
 
 /* --- Hero responsive --- */
 
-@media (max-width: 1199.98px) {
+/* The 145% zoom sizes the image off the card's width, so on squarish or
+   portrait windows (wider than the 992px tablet cutoff) the scaled image is
+   shorter than the card and exposes bars. cover always fills. The 11/10
+   threshold is the ~1.04 break-even ratio plus a safety margin. */
+@media (min-width: 992px) and (max-aspect-ratio: 11/10) {
+  .hero__card {
+    background-size: cover;
+  }
+}
+
+/* 1200-1399px: full nav fits, but only with the compact pill (smaller link
+   fonts) and the 150px logo; otherwise the grid squeezes the logo. */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
   .site-nav__logo {
     width: 150px;
   }
@@ -507,6 +556,29 @@ img {
   .site-nav__give {
     padding: 0 0.85rem;
     font-size: 0.78rem;
+  }
+}
+
+/* Below 1200px the full pill + 150px logo + account link can't all fit
+   (the grid crushes the logo to make room), so collapse to the hamburger
+   layout that already serves tablet/mobile. */
+@media (max-width: 1199.98px) {
+  .site-nav__logo {
+    width: 150px;
+  }
+
+  .site-nav__inner {
+    grid-template-columns: auto 1fr;
+  }
+
+  .site-nav__pill {
+    justify-self: end;
+  }
+
+  .site-nav__links,
+  .site-nav__give,
+  .site-nav__account {
+    display: none;
   }
 
   .hero__title {
@@ -523,20 +595,6 @@ img {
 }
 
 @media (max-width: 991.98px) {
-  .site-nav__inner {
-    grid-template-columns: auto 1fr;
-  }
-
-  .site-nav__pill {
-    justify-self: end;
-  }
-
-  .site-nav__links,
-  .site-nav__give,
-  .site-nav__account {
-    display: none;
-  }
-
   .site-nav__logo {
     width: 145px;
   }
@@ -554,6 +612,7 @@ img {
 
   .hero__card {
     min-height: calc(100vh - 1.5rem);
+    min-height: calc(100svh - 1.5rem);
     border-radius: 32px;
     /* Shift the focal point left so the worship leader stays in frame
        on the narrow phone crop (he sits ~31% across the photo) */
@@ -706,8 +765,11 @@ img {
 .mission-band__tab {
   position: absolute;
   left: 50%;
-  top: 0;
-  /* white notch sits on the band's top edge */
+  /* Overlaps the band's top edge instead of sitting flush on it: the SVG and
+     the band rasterize on separate pixel grids, and at some zoom levels the
+     rounding exposes a hairline of orange between them. The overlap hides
+     against the white page background above the band. */
+  top: -2px;
   transform: translateX(-50%);
   width: 138px;
   height: auto;
@@ -769,6 +831,15 @@ img {
   margin-inline: auto;
 }
 
+/* Stagger the three cards so they rise in sequence, not all at once */
+.mission-band>.row>*:nth-child(2) .mission-card.reveal {
+  --reveal-delay: 120ms;
+}
+
+.mission-band>.row>*:nth-child(3) .mission-card.reveal {
+  --reveal-delay: 240ms;
+}
+
 .mission-card {
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -806,7 +877,7 @@ img {
 }
 
 .mission-card__link {
-  color: var(--orange);
+  color: var(--orange-text);
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -841,6 +912,13 @@ img {
   width: 100%;
   margin-left: 0 !important;
   margin-right: 0 !important;
+}
+
+/* Keep the heading/body flush with the "GOSPEL" eyebrow at every width.
+   Bootstrap's column gutter would otherwise indent them ~32px until 1200px. */
+.mission-gospel__copy .row>* {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .mission-gospel__eyebrow {
@@ -962,7 +1040,9 @@ img {
 }
 
 .tagline__muted {
-  color: #192C4066;
+  /* 55% alpha, up from the Figma's 40%: large text needs 3:1 contrast
+     (WCAG 1.4.3) and 40% only reaches ~2.3:1. */
+  color: #192C408C;
 }
 
 /* The tagline CTA is the large hero variant (178x60 in Figma) */
@@ -1046,16 +1126,64 @@ img {
   color: var(--ink);
 }
 
-.ministry-swiper .swiper-slide-active .ministry-tile__label {
-  color: var(--orange);
+.ministry-tile__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
-.ministry-swiper .swiper-slide-active .ministry-tile__label::after {
+/* Tiles highlight on hover or keyboard focus. The highlighted tile in the
+   Figma documents this hover state; it isn't a persistent selection. */
+.ministry-tile:hover .ministry-tile__label,
+.ministry-tile:focus-within .ministry-tile__label {
+  color: var(--orange-text);
+}
+
+.ministry-tile:hover .ministry-tile__label::after,
+.ministry-tile:focus-within .ministry-tile__label::after {
   content: " ›";
+}
+
+/* Mobile runs centeredSlides and touch has no hover, so there the centered
+   (active) tile carries the highlight as a "current item" cue. If a pointer
+   does hover or focus another tile, that tile takes over. */
+@media (max-width: 575.98px) {
+  .ministry-swiper .swiper-slide-active .ministry-tile__label {
+    color: var(--orange-text);
+  }
+
+  .ministry-swiper .swiper-slide-active .ministry-tile__label::after {
+    content: " ›";
+  }
+
+  .ministry-swiper:has(.ministry-tile:hover, .ministry-tile:focus-within) .swiper-slide-active:not(:hover):not(:focus-within) .ministry-tile__label {
+    color: var(--ink);
+  }
+
+  .ministry-swiper:has(.ministry-tile:hover, .ministry-tile:focus-within) .swiper-slide-active:not(:hover):not(:focus-within) .ministry-tile__label::after {
+    content: none;
+  }
 }
 
 .ministry-swiper .swiper-pagination-bullet-active {
   background-color: var(--orange);
+}
+
+/* WCAG 2.5.8 wants 24x24px tap targets; the dots stay 8px visually but an
+   invisible ::before expands each one's hit area, and the wider gap keeps
+   neighboring targets from overlapping. */
+.ministry-swiper {
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+}
+
+.ministry-swiper .swiper-pagination-bullet {
+  position: relative;
+}
+
+.ministry-swiper .swiper-pagination-bullet::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
 }
 
 @media (min-width: 576px) {
@@ -1139,12 +1267,32 @@ img {
   aspect-ratio: 207 / 194;
 }
 
-.story__img:hover {
+/* The stretched-link overlay sits above the img, so hover/focus effects hang
+   off the tile (.story), not the image itself. */
+.story {
+  position: relative;
+}
+
+.story:hover .story__img,
+.story:focus-within .story__img {
   transform: scale(1.04);
 }
 
-.story__img--tall:hover {
+.story:hover .story__img--tall,
+.story:focus-within .story__img--tall {
   transform: scaleX(-1) scale(1.04);
+}
+
+/* Captions are links: plain at rest, underlined when their tile is
+   hovered or focused (the Figma's underline was a hover-state demo). */
+.story figcaption a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.story:hover figcaption a,
+.story figcaption a:focus-visible {
+  text-decoration: underline;
 }
 
 .story__caption {
@@ -1152,7 +1300,6 @@ img {
   font-size: 20px;
   font-weight: 700;
   line-height: 20px;
-  text-decoration: underline;
 }
 
 .story__subcaption {
@@ -1376,7 +1523,7 @@ img {
 }
 
 .footer__links a:hover {
-  color: var(--orange);
+  color: var(--orange-text);
 }
 
 .footer__bottom {
@@ -1388,7 +1535,7 @@ img {
 }
 
 .footer__bottom a {
-  color: var(--orange);
+  color: var(--orange-text);
   text-decoration: underline;
   transition: color 0.2s ease;
 }
