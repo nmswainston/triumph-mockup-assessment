@@ -31,13 +31,20 @@
 
 // Ministry carousel: multi-item, responsive, swipe + autoplay.
 if (window.Swiper) {
-    new Swiper(".ministry-swiper", {
+    // Honor the visitor's OS "reduce motion" setting: no autoplay for them.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const ministrySwiper = new Swiper(".ministry-swiper", {
         slidesPerView: "auto",
         spaceBetween: 16,
         centeredSlides: true,
-        rewind: true,
+        // loop (not rewind) so the end wraps smoothly instead of snapping back.
+        loop: true,
         grabCursor: true,
-        autoplay: { delay: 2500, disableOnInteraction: false },
+        keyboard: { enabled: true, onlyInViewport: true },
+        autoplay: reduceMotion
+            ? false
+            : { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
         pagination: { el: ".swiper-pagination", clickable: true },
         breakpoints: {
             576: { slidesPerView: 2.5, centeredSlides: false, spaceBetween: 20 },
@@ -45,4 +52,36 @@ if (window.Swiper) {
             992: { slidesPerView: 5, centeredSlides: false, spaceBetween: 32 },
         },
     });
+
+    // WCAG 2.2.2 / W3C carousel pattern: auto-rotation stops when keyboard
+    // focus enters the carousel, and stays stopped (no resume on blur).
+    document.querySelector(".ministry-swiper").addEventListener("focusin", () => {
+        ministrySwiper.autoplay?.stop();
+    });
 }
+
+// Scroll-reveal: fade/rise [data-reveal] elements in as they enter the viewport.
+(function () {
+    const targets = document.querySelectorAll("[data-reveal]");
+    if (!targets.length) return;
+
+    // Reduced-motion users (and browsers without IntersectionObserver) keep the
+    // content fully visible; we never add the hidden .reveal state for them.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+
+    targets.forEach((el) => el.classList.add("reveal"));
+
+    const io = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target); // reveal once, then stop watching
+            });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    targets.forEach((el) => io.observe(el));
+})();
