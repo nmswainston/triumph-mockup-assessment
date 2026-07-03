@@ -5,6 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Solid Christian Church</title>
+  <meta name="description"
+    content="Rock Solid Christian Church is a thriving and diverse community of real people experiencing real life together. Plan a visit, find a campus, or watch a message online.">
+
+  <!-- Tints the mobile browser UI to blend with the page background -->
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Social sharing preview (Open Graph) -->
+  <meta property="og:title" content="Rock Solid Christian Church">
+  <meta property="og:description"
+    content="A thriving and diverse community of real people experiencing real life together. Plan a visit today.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://triumph-assessment.netlify.app/">
+  <meta property="og:image" content="https://triumph-assessment.netlify.app/images/hero-worship-crowd.jpg">
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -121,7 +135,7 @@
 
     <!-- ===== Welcome / Who We Are ===== -->
     <section id="about" class="about-section">
-      <div class="about-container">
+      <div class="about-container" data-reveal>
         <p class="eyebrow mb-3">Welcome to Rock Solid</p>
 
         <div class="about__cols">
@@ -134,7 +148,8 @@
           </p>
         </div>
 
-        <img src="images/art-watercolor-cross.jpg" alt="Watercolor of Jesus carrying the cross" class="about__art mt-4">
+        <img src="images/art-watercolor-cross.jpg" alt="Watercolor of Jesus carrying the cross" class="about__art mt-4"
+          loading="lazy">
       </div>
     </section>
 
@@ -165,8 +180,8 @@
           </svg>
           <div class="mission-band text-center text-white">
 
-            <h2 class="fw-bold mb-3">Our Mission is Simple</h2>
-            <p class="mission-band__intro mx-auto mb-5">
+            <h2 class="fw-bold mb-3" data-reveal>Our Mission is Simple</h2>
+            <p class="mission-band__intro mx-auto mb-5" data-reveal>
               <strong>The gospel is the good news of Jesus:</strong> That Jesus lived a sinless life in my place, died
               the
               death that I deserved, and rose to life again.
@@ -175,7 +190,7 @@
             <div class="row g-4 justify-content-center">
 
               <div class="col-12 col-md-6 col-lg-4">
-                <article class="card mission-card h-100 border-0">
+                <article class="card mission-card h-100 border-0" data-reveal>
                   <div class="card-body">
                     <span class="mission-card__icon" aria-hidden="true">
                       <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -199,7 +214,7 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
-                <article class="card mission-card h-100 border-0">
+                <article class="card mission-card h-100 border-0" data-reveal>
                   <div class="card-body">
                     <span class="mission-card__icon" aria-hidden="true">
                       <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +240,7 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
-                <article class="card mission-card h-100 border-0">
+                <article class="card mission-card h-100 border-0" data-reveal>
                   <div class="card-body">
                     <span class="mission-card__icon" aria-hidden="true">
                       <svg width="116" height="98" viewBox="0 0 116 98" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -250,7 +265,7 @@
             </div>
 
             <!-- GOSPEL subsection (still inside the orange panel) -->
-            <div class="mission-gospel text-start">
+            <div class="mission-gospel text-start" data-reveal>
               <div class="mission-gospel__copy">
                 <p class="mission-gospel__eyebrow text-uppercase mb-3">Gospel</p>
                 <div class="row g-4 align-items-start">
@@ -269,7 +284,7 @@
                 </div>
               </div>
               <img src="images/art-watercolor-disciples.jpg" alt="Watercolor of Jesus' disciples gathered by the sea"
-                class="mission-gospel__art mt-4">
+                class="mission-gospel__art mt-4" loading="lazy">
             </div>
 
           </div>
@@ -281,7 +296,7 @@
     <section id="tagline" class="py-5 text-center">
       <span class="tagline__mark tagline__mark--h" aria-hidden="true"></span>
       <span class="tagline__mark tagline__mark--v" aria-hidden="true"></span>
-      <div class="container">
+      <div class="container" data-reveal>
         <h2 class="tagline__heading mb-4">Rock Solid Church continues to hold out <span
             class="tagline__accent">love</span> <span class="tagline__muted">and hope to the entire world.</span></h2>
         <a href="#" class="btn btn-dark-solid">Plan a Visit</a>
@@ -291,59 +306,74 @@
     <!-- ===== Find a Place to Volunteer (ministry carousel) ===== -->
     <section id="volunteer" class="py-5 text-center">
       <div class="container">
-        <img src="images/icon-volunteer.svg" alt="" aria-hidden="true" class="volunteer__icon">
+        <img src="images/icon-volunteer.svg" alt="" aria-hidden="true" class="volunteer__icon" data-reveal>
 
-        <h2 class="fw-bold mt-3">Find a Place to Volunteer</h2>
+        <h2 class="fw-bold mt-3" data-reveal>Find a Place to Volunteer</h2>
 
-        <p class="text-muted volunteer__subcopy mx-auto">
+        <p class="text-muted volunteer__subcopy mx-auto" data-reveal>
           Explore our ministries: find your place, grow in faith, and connect with a vibrant community!
         </p>
 
         <!-- Swiper requires this exact nesting: .swiper > .swiper-wrapper > .swiper-slide -->
-        <div class="swiper ministry-swiper mt-4">
+        <div class="swiper ministry-swiper mt-4" data-reveal role="region" aria-roledescription="carousel"
+          aria-label="Ministry areas">
           <div class="swiper-wrapper">
 
             <div class="swiper-slide ministry-tile">
-              <img src="images/ministry-prayer-care-original.png"
-                alt="People holding candles at a Prayer and Care gathering"
-                class="ministry-tile__img ministry-tile__img--prayer">
-              <p class="ministry-tile__label">Prayer &amp; Care</p>
+              <a href="#" class="ministry-tile__link">
+                <img src="images/ministry-prayer-care.webp"
+                  alt="People holding candles at a Prayer and Care gathering"
+                  class="ministry-tile__img ministry-tile__img--prayer" loading="lazy">
+                <p class="ministry-tile__label">Prayer &amp; Care</p>
+              </a>
             </div>
 
             <div class="swiper-slide ministry-tile">
-              <img src="images/ministry-kids-original.png" alt="A child at a Kids ministry event"
-                class="ministry-tile__img ministry-tile__img--kids">
-              <p class="ministry-tile__label">Kids</p>
+              <a href="#" class="ministry-tile__link">
+                <img src="images/ministry-kids.webp" alt="A child at a Kids ministry event"
+                  class="ministry-tile__img ministry-tile__img--kids" loading="lazy">
+                <p class="ministry-tile__label">Kids</p>
+              </a>
             </div>
 
             <div class="swiper-slide ministry-tile">
-              <img src="images/ministry-students-original.png" alt="Students gathered around a table"
-                class="ministry-tile__img ministry-tile__img--students">
-              <p class="ministry-tile__label">Students</p>
+              <a href="#" class="ministry-tile__link">
+                <img src="images/ministry-students.webp" alt="Students gathered around a table"
+                  class="ministry-tile__img ministry-tile__img--students" loading="lazy">
+                <p class="ministry-tile__label">Students</p>
+              </a>
             </div>
 
             <div class="swiper-slide ministry-tile">
-              <img src="images/ministry-worship-original.png" alt="A worship leader singing on stage"
-                class="ministry-tile__img ministry-tile__img--worship">
-              <p class="ministry-tile__label">Worship</p>
+              <a href="#" class="ministry-tile__link">
+                <img src="images/ministry-worship.webp" alt="A worship leader singing on stage"
+                  class="ministry-tile__img ministry-tile__img--worship" loading="lazy">
+                <p class="ministry-tile__label">Worship</p>
+              </a>
             </div>
 
             <div class="swiper-slide ministry-tile">
-              <img src="images/ministry-men-original.png" alt="Men connecting at a gathering"
-                class="ministry-tile__img ministry-tile__img--men">
-              <p class="ministry-tile__label">Men</p>
+              <a href="#" class="ministry-tile__link">
+                <img src="images/ministry-men.webp" alt="Men connecting at a gathering"
+                  class="ministry-tile__img ministry-tile__img--men" loading="lazy">
+                <p class="ministry-tile__label">Men</p>
+              </a>
             </div>
 
             <div class="swiper-slide ministry-tile">
-              <img src="images/ministry-women-original.png" alt="Women sharing coffee together"
-                class="ministry-tile__img ministry-tile__img--women">
-              <p class="ministry-tile__label">Women</p>
+              <a href="#" class="ministry-tile__link">
+                <img src="images/ministry-women.webp" alt="Women sharing coffee together"
+                  class="ministry-tile__img ministry-tile__img--women" loading="lazy">
+                <p class="ministry-tile__label">Women</p>
+              </a>
             </div>
 
             <div class="swiper-slide ministry-tile">
-              <img src="images/ministry-small-groups-original.png" alt="A small group meeting together"
-                class="ministry-tile__img ministry-tile__img--small-groups">
-              <p class="ministry-tile__label">Small Groups</p>
+              <a href="#" class="ministry-tile__link">
+                <img src="images/ministry-small-groups.webp" alt="A small group meeting together"
+                  class="ministry-tile__img ministry-tile__img--small-groups" loading="lazy">
+                <p class="ministry-tile__label">Small Groups</p>
+              </a>
             </div>
 
           </div>
@@ -356,7 +386,7 @@
     <!-- ===== Saved Lives Are Changed Lives ===== -->
     <section id="stories" class="py-5">
       <div class="container-fluid px-4">
-        <div class="stories-card p-4 p-md-5 text-white">
+        <div class="stories-card p-4 p-md-5 text-white" data-reveal>
           <div class="stories-grid">
             <div class="stories-copy">
               <h2 class="stories-text">Saved Lives Are Changed Lives.</h2>
@@ -366,21 +396,24 @@
 
             <div class="stories-images">
               <figure class="story m-0">
-                <img src="images/story-joshua.png" alt="Joshua, who found peace through the church"
-                  class="story__img story__img--tall">
-                <figcaption class="story__caption">Joshua's Road to Peace</figcaption>
+                <img src="images/story-joshua.webp" alt="Joshua, who found peace through the church"
+                  class="story__img story__img--tall" loading="lazy">
+                <figcaption class="story__caption"><a href="#" class="stretched-link">Joshua's Road to
+                    Peace</a></figcaption>
               </figure>
 
               <div class="stories-stack">
                 <figure class="story m-0">
                   <img src="images/story-by-any-means.jpg" alt="A woman whose life was changed"
-                    class="story__img story__img--short">
-                  <figcaption class="story__subcaption">By Any Means Necessary</figcaption>
+                    class="story__img story__img--short" loading="lazy">
+                  <figcaption class="story__subcaption"><a href="#" class="stretched-link">By Any Means
+                      Necessary</a></figcaption>
                 </figure>
                 <figure class="story m-0">
-                  <img src="images/story-holding-on-to-hope.png" alt="A woman holding on to hope"
-                    class="story__img story__img--short">
-                  <figcaption class="story__subcaption">Holding on to Hope</figcaption>
+                  <img src="images/story-holding-on-to-hope.webp" alt="A woman holding on to hope"
+                    class="story__img story__img--short" loading="lazy">
+                  <figcaption class="story__subcaption"><a href="#" class="stretched-link">Holding on to
+                      Hope</a></figcaption>
                 </figure>
               </div>
             </div>
@@ -393,7 +426,7 @@
 
   <footer class="footer">
     <div class="container-fluid px-3">
-      <div class="footer__card">
+      <div class="footer__card" data-reveal>
         <div class="footer__inner">
           <div class="footer__content">
             <div class="footer__brand">
