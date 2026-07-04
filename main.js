@@ -63,6 +63,16 @@ if (window.Swiper) {
     });
 }
 
+// Placeholder links (href="#") stand in for pages this mockup doesn't include.
+// A bare "#" navigates to the top of the page, so an accidental click,
+// especially on the stretched-link cards' large hit areas, yanks the visitor
+// back up. Suppress that jump while keeping the links focusable and styled.
+// Real in-page anchors (e.g. the skip link's #main-content) are left alone.
+document.addEventListener("click", (e) => {
+    const placeholder = e.target.closest('a[href="#"], a[href=""]');
+    if (placeholder) e.preventDefault();
+});
+
 // Scroll-reveal: fade/rise [data-reveal] elements in as they enter the viewport.
 (function () {
     const targets = document.querySelectorAll("[data-reveal]");
