@@ -1034,6 +1034,30 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* No overflow clipping here: the vertical mark starts translated below the
+     section, and IntersectionObserver respects ancestor clips, so hiding the
+     overflow would keep that mark permanently unobserved (and invisible).
+     The reveal's opacity fade already covers the out-of-bounds travel. */
+}
+
+/* Each frame mark slides in along its own axis, arriving just after the
+   heading: the horizontal bar from the right, the vertical bar from below.
+   :not(.is-visible) keeps these hidden-state overrides from outranking the
+   shared .reveal.is-visible end state. */
+.tagline__mark--h.reveal:not(.is-visible) {
+  transform: translateX(56px);
+}
+
+.tagline__mark--v.reveal:not(.is-visible) {
+  transform: translateY(56px);
+}
+
+.tagline__mark--h.reveal {
+  --reveal-delay: 250ms;
+}
+
+.tagline__mark--v.reveal {
+  --reveal-delay: 400ms;
 }
 
 /* Small decorative accent marks framing the statement (Figma) */
