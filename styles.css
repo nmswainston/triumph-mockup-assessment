@@ -868,6 +868,16 @@ img {
   --reveal-delay: 300ms;
 }
 
+/* Soften the cards' entrance: stretch the fade to span the full slide (was
+   0.6s, resolving before the 0.9s motion finished and reading as a pop) and
+   ease it in gently, so the opacity and movement settle together. The
+   trailing transition-delay restores the per-card stagger the shorthand
+   would otherwise reset to 0. */
+.mission-card.reveal {
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
 .mission-card {
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
