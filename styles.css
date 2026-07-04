@@ -52,8 +52,10 @@ img {
    JS, content stays visible if JS is off, and reduced-motion users opt out. */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(28px);
+  /* Fade resolves before the motion does, and the ease-out curve starts
+     quick then glides into place; together they read as one fluid settle. */
+  transition: opacity 0.6s ease-out, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -856,12 +858,13 @@ img {
 }
 
 /* Stagger the three cards so they rise in sequence, not all at once */
+/* Stagger the three mission cards so they cascade in left to right */
 .mission-band>.row>*:nth-child(2) .mission-card.reveal {
-  --reveal-delay: 120ms;
+  --reveal-delay: 150ms;
 }
 
 .mission-band>.row>*:nth-child(3) .mission-card.reveal {
-  --reveal-delay: 240ms;
+  --reveal-delay: 300ms;
 }
 
 .mission-card {
@@ -912,7 +915,7 @@ img {
 /* --- Gospel subsection (inside the orange panel) --- */
 
 .mission-gospel {
-  margin-top: 8rem;
+  margin-top: 6rem;
   display: flex;
   flex-direction: column;
   gap: 64px;
@@ -1010,6 +1013,9 @@ img {
 
   .mission-gospel {
     gap: 2rem;
+    /* The desktop 6rem margin plus this padding left a huge orange void on
+       phones; 2rem + 3rem reads as a section break without the dead air. */
+    margin-top: 2rem;
     padding-top: 3rem;
     height: auto;
   }
