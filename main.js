@@ -38,8 +38,11 @@ if (window.Swiper) {
         slidesPerView: "auto",
         spaceBetween: 16,
         centeredSlides: true,
-        // loop (not rewind) so the end wraps smoothly instead of snapping back.
-        loop: true,
+        // rewind, not loop: loop mode needs slides >= 2x slidesPerView (10+
+        // at desktop) and misbehaves with our 7. The 500ms speed turns the
+        // end-of-track rewind into a readable glide instead of a snap.
+        rewind: true,
+        speed: 500,
         grabCursor: true,
         keyboard: { enabled: true, onlyInViewport: true },
         autoplay: reduceMotion
