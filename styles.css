@@ -34,6 +34,7 @@ body {
   background-color: var(--bg);
   color: var(--ink);
   overflow-wrap: break-word;
+  overflow-x: clip;
 }
 
 img {
@@ -1106,6 +1107,44 @@ img {
   line-height: 1.1;
 }
 
+/* ===== Dotted texture blobs (Figma: "Mask group", 756x756 window, 60%
+   opacity baked into the export). Two placements of one asset flank the
+   tagline: lower-left spilling into the volunteer carousel, upper-right
+   rising into the gospel panel, rotated 90deg. z-index: -1 sinks them
+   behind the neighboring sections' backgrounds.
+   mix-blend-mode: exclusion supplies the inversion Figma bakes at render
+   time but cannot bake into a flat export (a blend needs a backdrop); over
+   the white page it turns the exported dark dot field into faint dark dots.
+   The radial mask restores the Figma "Ellipse 124" fade the export lost when
+   it trimmed transparent margins: closest-side feathers the left/right edges
+   (the tall box's nearest sides), killing the hard border the crop left. */
+#tagline::before,
+#tagline::after {
+  content: "";
+  position: absolute;
+  width: 690px;
+  height: 1224px;
+  background: url("images/bg-texture-dots.png") no-repeat 0 0 / 100% 100%;
+  z-index: -1;
+  mix-blend-mode: exclusion;
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 42%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 42%, #000 58%, transparent 100%);
+}
+
+/* Lower-left (Figma window: top 3749, left -185.64) */
+#tagline::before {
+  top: 110px;
+  left: -153px;
+}
+
+/* Upper-right (Figma window: top 3088, left 1361, rotation 90deg;
+      bleeds 1361 + 756 - 1920 = 197px past the right edge of the frame) */
+#tagline::after {
+  top: -551px;
+  right: -164px;
+  transform: rotate(90deg);
+}
+
 /* The shorter mobile/tablet sections push the centered heading up toward the
    top mark, so lift the mark clear of the text at those widths */
 @media (max-width: 991.98px) {
@@ -1128,14 +1167,24 @@ img {
   margin-inline: auto;
 }
 
+/* Even ~33px vertical rhythm through the section, matching Figma
+   (icon -> heading -> subcopy -> tiles); replaces the tighter mt-3 utility */
+#volunteer h2 {
+  margin-top: 2rem;
+}
+
 .volunteer__subcopy {
   max-width: 34rem;
+  margin-top: 2.1rem;
   font-size: 18px;
   font-weight: 400;
   line-height: 23px;
 }
 
 .ministry-swiper {
+  /* ~39px gap from the subcopy to the tiles, matching the Figma rhythm
+     (was the mt-4 utility at 24px, which read as cramped) */
+  margin-top: 2.4rem;
   padding-bottom: 2.5rem;
 }
 
