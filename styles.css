@@ -70,6 +70,27 @@ img {
   }
 }
 
+/* Keyboard skip link (WCAG 2.4.1): parked above the viewport, drops into
+   view only while focused. Transform (not display:none) keeps it focusable. */
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  background: var(--dark);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 2rem));
+}
+
+.skip-link:focus-visible {
+  transform: none;
+  color: #fff;
+}
+
 /* ===== Shared buttons ===== */
 
 .btn-dark-solid {
@@ -705,6 +726,9 @@ img {
   font-weight: 400;
   line-height: 30px;
   color: var(--ink);
+  /* Rebalance line breaks so no single line juts hard against the right
+     margin while its neighbors fall short (uneven rag on narrow screens) */
+  text-wrap: pretty;
 }
 
 .about__art {
@@ -1174,6 +1198,10 @@ img {
    neighboring targets from overlapping. */
 .ministry-swiper {
   --swiper-pagination-bullet-horizontal-gap: 8px;
+  /* Swiper's default inactive dot (#000 at 20% opacity) is ~1.5:1 against
+     white; WCAG 1.4.11 wants 3:1 for control states. */
+  --swiper-pagination-bullet-inactive-color: #767676;
+  --swiper-pagination-bullet-inactive-opacity: 1;
 }
 
 .ministry-swiper .swiper-pagination-bullet {

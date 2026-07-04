@@ -24,9 +24,18 @@ There is no build step; it is a static site.
 
 - Fully responsive layout (mobile, tablet, desktop) matched to the Figma
 - Live countdown to the next Sunday service
-- Swipeable, autoplaying ministry carousel with an active-card highlight
+- Swipeable, autoplaying ministry carousel: arrow-key navigation, pause on
+  hover, auto-rotation stops when keyboard focus enters, and the centered
+  card is highlighted on mobile where touch has no hover
+- Scroll-reveal animations via IntersectionObserver, skipped entirely for
+  `prefers-reduced-motion` users
+- WCAG 2.2 AA: passes an axe-core audit with zero violations (contrast-safe
+  text tokens, 24px tap targets, skip link, carousel ARIA per the W3C
+  pattern, reduced-motion support throughout)
+- Performance: photography served as right-sized WebP with lazy loading
+  (~14 MB of PNGs reduced to ~1 MB), preloaded hero image, and
+  cache-control headers tuned in `netlify.toml`
 - Bootstrap offcanvas menu on smaller screens
-- Accessibility touches: semantic landmarks, ARIA labels, descriptive alt text, and keyboard-focusable controls
 - Design tokens for consistent theming
 
 ## Running locally
@@ -45,7 +54,8 @@ Then open the printed local URL. (The VS Code Live Server extension also works.)
 .
 ├── index.html     # markup for all sections
 ├── styles.css     # custom styles and responsive breakpoints
-├── main.js        # countdown timer and Swiper carousel init
+├── main.js        # countdown, carousel init, scroll reveals
+├── netlify.toml   # headers, caching, and redirect config
 ├── favicon.svg    # brand favicon
 └── images/        # photography, logo, and artwork
 ```
