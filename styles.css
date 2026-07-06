@@ -1,8 +1,8 @@
 /* ===== Design tokens ===== */
 :root {
   --orange: #EB3300;
-  /* Slightly darker orange for small text on white: #EB3300 is 4.2:1, just
-     under the WCAG AA 4.5:1 minimum; #D93000 clears it at 4.8:1. */
+  /* Darker orange for small text on white - the brand orange is a little too
+     light to read well. */
   --orange-text: #D93000;
   --orange-dark: #c42a00;
   --bg: #ffffff;
@@ -20,6 +20,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Never let the page scroll sideways. The closed mobile menu sits just off
+     the right edge, and without this the page could scroll over to it when it
+     opens and leave the content shifted after closing. */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -48,14 +52,12 @@ img {
 }
 
 /* ===== Scroll reveal =====
-   main.js adds .reveal (hidden state) to [data-reveal] elements, then swaps in
-   .is-visible as each scrolls into view. Because the hidden state is applied by
-   JS, content stays visible if JS is off, and reduced-motion users opt out. */
+   JS adds .reveal to hide these, then .is-visible to fade them in on scroll.
+   Since JS does the hiding, the content still shows if JS is turned off. */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  /* Fade resolves before the motion does, and the ease-out curve starts
-     quick then glides into place; together they read as one fluid settle. */
+  /* Fade in a bit quicker than the slide-up so it feels smooth. */
   transition: opacity 0.6s ease-out, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
@@ -73,8 +75,8 @@ img {
   }
 }
 
-/* Keyboard skip link (WCAG 2.4.1): parked above the viewport, drops into
-   view only while focused. Transform (not display:none) keeps it focusable. */
+/* Skip link for keyboard users. Sits hidden above the page and drops in when
+   focused (transform instead of display:none so it stays focusable). */
 .skip-link {
   position: absolute;
   top: 1rem;
@@ -122,9 +124,8 @@ img {
 
 .hero__card {
   position: relative;
-  /* svh = viewport height with the mobile browser UI visible, so the
-     countdown and social row fit on screen at load. The vh line above it
-     is the fallback for browsers that predate svh. */
+  /* svh keeps the whole hero on screen on mobile (accounts for the browser
+     bars). The vh line above is a fallback for older browsers. */
   min-height: calc(100vh - 2rem);
   min-height: calc(100svh - 2rem);
   display: flex;
@@ -282,6 +283,20 @@ img {
 .site-nav__menu:hover {
   transform: translateY(-1px);
   background: #f0f0f0;
+}
+
+.site-nav__menu svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* Person icon sized in em so it matches the text next to it. */
+.icon-person {
+  width: 1.15em;
+  height: 1.15em;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
 .site-nav__account {
@@ -539,14 +554,11 @@ img {
   text-decoration: none;
 }
 
-.hero__social .fab {
-  font-family: "Font Awesome 6 Brands";
-  font-size: 22.63px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 27.16px;
-  letter-spacing: 0;
-  text-align: center;
+.hero__social svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  display: block;
 }
 
 .hero__social a:hover {
@@ -555,18 +567,15 @@ img {
 
 /* --- Hero responsive --- */
 
-/* The 145% zoom sizes the image off the card's width, so on squarish or
-   portrait windows (wider than the 992px tablet cutoff) the scaled image is
-   shorter than the card and exposes bars. cover always fills. The 11/10
-   threshold is the ~1.04 break-even ratio plus a safety margin. */
+/* On squarish/portrait windows the zoomed-in hero image can leave gaps, so
+   switch to cover there so it always fills the card. */
 @media (min-width: 992px) and (max-aspect-ratio: 11/10) {
   .hero__card {
     background-size: cover;
   }
 }
 
-/* 1200-1399px: full nav fits, but only with the compact pill (smaller link
-   fonts) and the 150px logo; otherwise the grid squeezes the logo. */
+/* 1200-1399px: the nav still fits, just shrink the links and logo a bit. */
 @media (min-width: 1200px) and (max-width: 1399.98px) {
   .site-nav__logo {
     width: 150px;
@@ -583,9 +592,7 @@ img {
   }
 }
 
-/* Below 1200px the full pill + 150px logo + account link can't all fit
-   (the grid crushes the logo to make room), so collapse to the hamburger
-   layout that already serves tablet/mobile. */
+/* Below 1200px the full nav doesn't fit, so switch to the hamburger menu. */
 @media (max-width: 1199.98px) {
   .site-nav__logo {
     width: 150px;
@@ -638,8 +645,7 @@ img {
     min-height: calc(100vh - 1.5rem);
     min-height: calc(100svh - 1.5rem);
     border-radius: 32px;
-    /* Shift the focal point left so the worship leader stays in frame
-       on the narrow phone crop (he sits ~31% across the photo) */
+    /* Shift left so the worship leader stays in frame on narrow phones. */
     background-position: 30% center;
   }
 
@@ -706,8 +712,7 @@ img {
   margin-bottom: 1rem;
 }
 
-/* Figma spreads these to opposite edges: 520px heading left, 420px body
-   right, with the body inset ~2rem from the content edge. */
+/* Two columns like the Figma: heading on the left, body text on the right. */
 .about__cols {
   display: grid;
   grid-template-columns: 520px 420px;
@@ -729,8 +734,7 @@ img {
   font-weight: 400;
   line-height: 30px;
   color: var(--ink);
-  /* Rebalance line breaks so no single line juts hard against the right
-     margin while its neighbors fall short (uneven rag on narrow screens) */
+  /* Even out the line breaks so the text wraps a bit nicer. */
   text-wrap: pretty;
 }
 
@@ -792,10 +796,8 @@ img {
 .mission-band__tab {
   position: absolute;
   left: 50%;
-  /* Overlaps the band's top edge instead of sitting flush on it: the SVG and
-     the band rasterize on separate pixel grids, and at some zoom levels the
-     rounding exposes a hairline of orange between them. The overlap hides
-     against the white page background above the band. */
+  /* Pull it up 2px to overlap the band - stops a thin orange line from
+     showing between the notch and the band at some zoom levels. */
   top: -2px;
   transform: translateX(-50%);
   width: 138px;
@@ -804,7 +806,7 @@ img {
   pointer-events: none;
 }
 
-/* Dark down-arrow seated in the white notch (decorative scroll cue) */
+/* Dark down-arrow in the notch (just decoration). */
 .mission-band__arrow {
   position: absolute;
   left: 50%;
@@ -858,8 +860,7 @@ img {
   margin-inline: auto;
 }
 
-/* Stagger the three cards so they rise in sequence, not all at once */
-/* Stagger the three mission cards so they cascade in left to right */
+/* Stagger the three cards so they come in one after another. */
 .mission-band>.row>*:nth-child(2) .mission-card.reveal {
   --reveal-delay: 150ms;
 }
@@ -868,11 +869,8 @@ img {
   --reveal-delay: 300ms;
 }
 
-/* Soften the cards' entrance: stretch the fade to span the full slide (was
-   0.6s, resolving before the 0.9s motion finished and reading as a pop) and
-   ease it in gently, so the opacity and movement settle together. The
-   trailing transition-delay restores the per-card stagger the shorthand
-   would otherwise reset to 0. */
+/* Slow the card fade to match the slide-up so they arrive together. The
+   transition-delay keeps the staggered timing from the rules above. */
 .mission-card.reveal {
   transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
@@ -952,8 +950,8 @@ img {
   margin-right: 0 !important;
 }
 
-/* Keep the heading/body flush with the "GOSPEL" eyebrow at every width.
-   Bootstrap's column gutter would otherwise indent them ~32px until 1200px. */
+/* Line the heading/body up with the "GOSPEL" label by removing Bootstrap's
+   column padding. */
 .mission-gospel__copy .row>* {
   padding-left: 0;
   padding-right: 0;
@@ -1024,8 +1022,7 @@ img {
 
   .mission-gospel {
     gap: 2rem;
-    /* The desktop 6rem margin plus this padding left a huge orange void on
-       phones; 2rem + 3rem reads as a section break without the dead air. */
+    /* Less top space on phones so there isn't a big empty orange gap. */
     margin-top: 2rem;
     padding-top: 3rem;
     height: auto;
@@ -1045,16 +1042,12 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* No overflow clipping here: the vertical mark starts translated below the
-     section, and IntersectionObserver respects ancestor clips, so hiding the
-     overflow would keep that mark permanently unobserved (and invisible).
-     The reveal's opacity fade already covers the out-of-bounds travel. */
+  /* Don't clip overflow here - the vertical mark starts below the section,
+     and clipping it would stop the scroll reveal from ever firing on it. */
 }
 
-/* Each frame mark slides in along its own axis, arriving just after the
-   heading: the horizontal bar from the right, the vertical bar from below.
-   :not(.is-visible) keeps these hidden-state overrides from outranking the
-   shared .reveal.is-visible end state. */
+/* The two accent marks slide in just after the heading - the top one from
+   the right, the bottom one from below. */
 .tagline__mark--h.reveal:not(.is-visible) {
   transform: translateX(56px);
 }
@@ -1105,58 +1098,49 @@ img {
 }
 
 .tagline__muted {
-  /* 55% alpha, up from the Figma's 40%: large text needs 3:1 contrast
-     (WCAG 1.4.3) and 40% only reaches ~2.3:1. */
+  /* A bit darker than the Figma's 40% so the text is easier to read. */
   color: #192C408C;
 }
 
-/* The tagline CTA is the large hero variant (178x60 in Figma) */
+/* Bigger button here, matching the Figma. */
 #tagline .btn-dark-solid {
   padding: 1rem 1.5rem;
   font-size: 1.5rem;
   line-height: 1.1;
 }
 
-/* ===== Dotted texture blobs (Figma: "Mask group", 756x756 window, 60%
-   opacity baked into the export). Two placements of one asset flank the
-   tagline: lower-left spilling into the volunteer carousel, upper-right
-   rising into the gospel panel, rotated 90deg. z-index: -1 sinks them
-   behind the neighboring sections' backgrounds.
-   mix-blend-mode: exclusion supplies the inversion Figma bakes at render
-   time but cannot bake into a flat export (a blend needs a backdrop); over
-   the white page it turns the exported dark dot field into faint dark dots.
-   The radial mask restores the Figma "Ellipse 124" fade the export lost when
-   it trimmed transparent margins: closest-side feathers the left/right edges
-   (the tall box's nearest sides), killing the hard border the crop left. */
+/* ===== Dotted texture behind the tagline =====
+   Same dot image placed twice, lower-left and upper-right (rotated). z-index:-1
+   tucks them behind the nearby sections. The blend mode and the radial mask
+   fade the dots so they look soft over the white page. */
 #tagline::before,
 #tagline::after {
   content: "";
   position: absolute;
   width: 690px;
   height: 1224px;
-  background: url("images/bg-texture-dots.png") no-repeat 0 0 / 100% 100%;
+  background: url("images/bg-texture-dots.webp") no-repeat 0 0 / 100% 100%;
   z-index: -1;
   mix-blend-mode: exclusion;
   -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 42%, #000 58%, transparent 100%);
   mask-image: radial-gradient(ellipse closest-side at 50% 42%, #000 58%, transparent 100%);
 }
 
-/* Lower-left (Figma window: top 3749, left -185.64) */
+/* Lower-left one. */
 #tagline::before {
   top: 110px;
   left: -153px;
 }
 
-/* Upper-right (Figma window: top 3088, left 1361, rotation 90deg;
-      bleeds 1361 + 756 - 1920 = 197px past the right edge of the frame) */
+/* Upper-right one, rotated 90deg. */
 #tagline::after {
   top: -551px;
   right: -164px;
   transform: rotate(90deg);
 }
 
-/* The shorter mobile/tablet sections push the centered heading up toward the
-   top mark, so lift the mark clear of the text at those widths */
+/* Sections are shorter on mobile/tablet, so move the top mark up out of the
+   heading's way. */
 @media (max-width: 991.98px) {
   .tagline__mark--h {
     top: 40px;
@@ -1177,8 +1161,8 @@ img {
   margin-inline: auto;
 }
 
-/* Even ~33px vertical rhythm through the section, matching Figma
-   (icon -> heading -> subcopy -> tiles); replaces the tighter mt-3 utility */
+/* Even spacing down the section (icon, heading, subcopy, tiles) to match
+   the Figma. */
 #volunteer h2 {
   margin-top: 2rem;
 }
@@ -1192,8 +1176,7 @@ img {
 }
 
 .ministry-swiper {
-  /* ~39px gap from the subcopy to the tiles, matching the Figma rhythm
-     (was the mt-4 utility at 24px, which read as cramped) */
+  /* A bit more gap above the tiles so it doesn't feel cramped. */
   margin-top: 2.4rem;
   padding-bottom: 2.5rem;
 }
@@ -1245,8 +1228,7 @@ img {
   text-decoration: none;
 }
 
-/* Tiles highlight on hover or keyboard focus. The highlighted tile in the
-   Figma documents this hover state; it isn't a persistent selection. */
+/* Highlight a tile on hover or keyboard focus. */
 .ministry-tile:hover .ministry-tile__label,
 .ministry-tile:focus-within .ministry-tile__label {
   color: var(--orange-text);
@@ -1257,9 +1239,8 @@ img {
   content: " ›";
 }
 
-/* Mobile runs centeredSlides and touch has no hover, so there the centered
-   (active) tile carries the highlight as a "current item" cue. If a pointer
-   does hover or focus another tile, that tile takes over. */
+/* No hover on touch, so on mobile highlight the centered (active) tile
+   instead. If someone does hover/focus a tile, that one takes over. */
 @media (max-width: 575.98px) {
   .ministry-swiper .swiper-slide-active .ministry-tile__label {
     color: var(--orange-text);
@@ -1282,13 +1263,11 @@ img {
   background-color: var(--orange);
 }
 
-/* WCAG 2.5.8 wants 24x24px tap targets; the dots stay 8px visually but an
-   invisible ::before expands each one's hit area, and the wider gap keeps
-   neighboring targets from overlapping. */
+/* Keep the dots small but give each an invisible bigger hit area so they're
+   easier to tap. */
 .ministry-swiper {
   --swiper-pagination-bullet-horizontal-gap: 8px;
-  /* Swiper's default inactive dot (#000 at 20% opacity) is ~1.5:1 against
-     white; WCAG 1.4.11 wants 3:1 for control states. */
+  /* Darker inactive dots - Swiper's defaults are too faint to see on white. */
   --swiper-pagination-bullet-inactive-color: #767676;
   --swiper-pagination-bullet-inactive-opacity: 1;
 }
@@ -1384,8 +1363,7 @@ img {
   aspect-ratio: 207 / 194;
 }
 
-/* The stretched-link overlay sits above the img, so hover/focus effects hang
-   off the tile (.story), not the image itself. */
+/* Hang the hover/focus effects off the whole tile, not just the image. */
 .story {
   position: relative;
 }
@@ -1400,8 +1378,7 @@ img {
   transform: scaleX(-1) scale(1.04);
 }
 
-/* Captions are links: plain at rest, underlined when their tile is
-   hovered or focused (the Figma's underline was a hover-state demo). */
+/* Caption links: no underline normally, underline on hover/focus. */
 .story figcaption a {
   color: inherit;
   text-decoration: inherit;
@@ -1434,8 +1411,7 @@ img {
   }
 }
 
-/* Tablet: keep big | stack side by side, but stretch the big image to the
-   stack's height so their bottoms line up */
+/* Tablet: big image next to the stack, matched heights so the bottoms line up. */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .stories-images {
     align-items: stretch;

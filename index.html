@@ -11,32 +11,37 @@
   <!-- Tints the mobile browser UI to blend with the page background -->
   <meta name="theme-color" content="#ffffff">
 
+  <link rel="canonical" href="https://triumph-assessment.netlify.app/">
+
   <!-- Social sharing preview (Open Graph) -->
   <meta property="og:title" content="Rock Solid Christian Church">
   <meta property="og:description"
     content="A thriving and diverse community of real people experiencing real life together. Plan a visit today.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rock Solid Christian Church">
   <meta property="og:url" content="https://triumph-assessment.netlify.app/">
   <meta property="og:image" content="https://triumph-assessment.netlify.app/images/hero-worship-crowd.jpg">
+  <meta property="og:image:alt" content="A worship leader on stage before a crowd at Rock Solid Christian Church">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <!-- The hero background is the largest paint, but browsers only discover
-       CSS background images after the stylesheet parses; preload starts the
-       fetch with the HTML instead -->
+  <!-- Preload the hero image so it starts loading right away (it's the biggest
+       thing on the page). -->
   <link rel="preload" href="images/hero-worship-crowd.jpg" as="image" fetchpriority="high">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Fonts load from gstatic, so connect to it early. crossorigin is needed
+       for fonts. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
+  <!-- Icons are inline SVG in the HTML, so no icon-font libraries here. Just
+       Bootstrap (grid + mobile menu) and Swiper (carousel). -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
-  <!-- ?v= busts caches poisoned by the old week-long Cache-Control header;
-       bump it if that ever needs doing again -->
-  <link rel="stylesheet" href="styles.css?v=20260703">
+  <!-- ?v= forces a fresh copy when I change the CSS or JS. -->
+  <link rel="stylesheet" href="styles.css?v=20260706d">
 </head>
 
 <body>
@@ -72,22 +77,31 @@
 
                   <button class="site-nav__menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
                     aria-controls="mobileMenu" aria-label="Open menu">
-                    <i class="bi bi-list"></i>
+                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                      <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5Zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5Zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5Z" />
+                    </svg>
                   </button>
                 </div>
               </div>
 
               <a href="#" class="site-nav__account">
-                <i class="bi bi-person" aria-hidden="true"></i>
+                <svg class="icon-person" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path
+                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                </svg>
                 <span>Create Account</span>
               </a>
 
             </div>
           </nav>
 
-          <!-- Mobile offcanvas menu -->
+          <!-- Mobile menu. data-bs-scroll="true" stops Bootstrap from adding
+               padding to the body, which was squishing the page sideways. Now
+               the menu just floats on top and the backdrop lets you tap outside
+               to close it. -->
           <div class="offcanvas offcanvas-end mobile-menu" tabindex="-1" id="mobileMenu"
-            aria-labelledby="mobileMenuLabel">
+            data-bs-scroll="true" data-bs-backdrop="true" aria-labelledby="mobileMenuLabel">
             <div class="offcanvas-header">
               <h2 class="offcanvas-title" id="mobileMenuLabel">Rock Solid</h2>
 
@@ -109,7 +123,10 @@
                 <a href="#" class="mobile-menu__give" data-bs-dismiss="offcanvas">Give Online</a>
 
                 <a href="#" class="mobile-menu__account" data-bs-dismiss="offcanvas">
-                  <i class="bi bi-person" aria-hidden="true"></i>
+                  <svg class="icon-person" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path
+                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                </svg>
                   Create Account
                 </a>
               </div>
@@ -133,10 +150,22 @@
             <p class="hero__countdown-time mb-0" id="countdown">00:00:00</p>
           </div>
           <ul class="hero__social">
-            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a></li>
-            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" />
+                </svg></a></li>
+            <li><a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg></a></li>
+            <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                </svg></a></li>
+            <li><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg></a></li>
           </ul>
         </div>
 
@@ -168,7 +197,7 @@
     <section id="connect" class="p-3">
       <div class="container-fluid p-0">
         <div class="mission-band-wrap">
-          <!-- Scroll-down indicator: white notch cut into the band + dark arrow (decorative) -->
+          <!-- Little notch and down arrow on the band, just decoration. -->
           <svg class="mission-band__tab" aria-hidden="true" width="138" height="35" viewBox="0 0 138 35" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#missionTabClip)">
@@ -457,9 +486,30 @@
                         fill="#2E2320" />
                     </svg>
                   </a></li>
-                <li><a href="#" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a></li>
-                <li><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></li>
-                <li><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a></li>
+                <li><a href="#" aria-label="X (Twitter)">
+                    <svg class="footer__x-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                      <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
+                      <path transform="translate(30 30) scale(1.16) translate(-12 -12)" fill="#2E2320"
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </a></li>
+                <li><a href="#" aria-label="Instagram">
+                    <svg class="footer__instagram-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                      <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
+                      <path transform="translate(30 30) scale(1.16) translate(-12 -12)" fill="#2E2320"
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                    </svg>
+                  </a></li>
+                <li><a href="#" aria-label="YouTube">
+                    <svg class="footer__youtube-icon" width="60" height="60" viewBox="0 0 60 60" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                      <circle cx="30" cy="30" r="29.25" stroke="#2E2320" stroke-width="1.5" />
+                      <path transform="translate(30 30) scale(1.16) translate(-12 -12)" fill="#2E2320"
+                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    </svg>
+                  </a></li>
               </ul>
             </div>
 
@@ -508,7 +558,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="main.js?v=20260703"></script>
+  <script src="main.js?v=20260706d"></script>
 </body>
 
 </html>

@@ -1,9 +1,9 @@
-// Hero countdown to the next Sunday service (10 AM local).
+// Countdown to the next Sunday service (10am).
 (function () {
     const el = document.getElementById("countdown");
     if (!el) return;
 
-    // The next Sunday at 10:00; if it's already past this Sunday's service, roll to next week.
+    // Get next Sunday at 10am. If this week's is already past, use next week.
     function nextService() {
         const now = new Date();
         const target = new Date(now);
@@ -19,28 +19,30 @@
     function tick() {
         let diff = Math.floor((nextService() - new Date()) / 1000);
         if (diff < 0) diff = 0;
-        const h = Math.floor(diff / 3600);
+        const d = Math.floor(diff / 86400);
+        const h = Math.floor((diff % 86400) / 3600);
         const m = Math.floor((diff % 3600) / 60);
         const s = diff % 60;
-        el.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+        // Show days on their own so the hours don't get huge early in the week.
+        el.textContent = d > 0
+            ? `${d}d ${pad(h)}:${pad(m)}:${pad(s)}`
+            : `${pad(h)}:${pad(m)}:${pad(s)}`;
     }
 
     tick();
     setInterval(tick, 1000);
 })();
 
-// Ministry carousel: multi-item, responsive, swipe + autoplay.
+// Ministry carousel (Swiper).
 if (window.Swiper) {
-    // Honor the visitor's OS "reduce motion" setting: no autoplay for them.
+    // Skip autoplay if the user has reduce-motion turned on.
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const ministrySwiper = new Swiper(".ministry-swiper", {
         slidesPerView: "auto",
         spaceBetween: 16,
         centeredSlides: true,
-        // rewind, not loop: loop mode needs slides >= 2x slidesPerView (10+
-        // at desktop) and misbehaves with our 7. The 500ms speed turns the
-        // end-of-track rewind into a readable glide instead of a snap.
+        // rewind instead of loop - loop was glitchy with only 7 slides.
         rewind: true,
         speed: 500,
         grabCursor: true,
@@ -56,30 +58,40 @@ if (window.Swiper) {
         },
     });
 
-    // WCAG 2.2.2 / W3C carousel pattern: auto-rotation stops when keyboard
-    // focus enters the carousel, and stays stopped (no resume on blur).
-    document.querySelector(".ministry-swiper").addEventListener("focusin", () => {
+    const carousel = document.querySelector(".ministry-swiper");
+
+    // Don't autoplay on page load - only run while the carousel is on screen.
+    // Start it when it scrolls into view, and pause it again when it leaves.
+    if (!reduceMotion && ministrySwiper.autoplay && "IntersectionObserver" in window) {
+        ministrySwiper.autoplay.stop();
+        new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) ministrySwiper.autoplay.start();
+                else ministrySwiper.autoplay.stop();
+            });
+        }, { threshold: 0.3 }).observe(carousel);
+    }
+
+    // Stop the autoplay once someone tabs into the carousel.
+    carousel.addEventListener("focusin", () => {
         ministrySwiper.autoplay?.stop();
     });
 }
 
-// Placeholder links (href="#") stand in for pages this mockup doesn't include.
-// A bare "#" navigates to the top of the page, so an accidental click,
-// especially on the stretched-link cards' large hit areas, yanks the visitor
-// back up. Suppress that jump while keeping the links focusable and styled.
-// Real in-page anchors (e.g. the skip link's #main-content) are left alone.
+// The "#" links are placeholders for pages this mockup doesn't have. Stop them
+// from jumping back to the top of the page when clicked (real anchors like the
+// skip link still work).
 document.addEventListener("click", (e) => {
     const placeholder = e.target.closest('a[href="#"], a[href=""]');
     if (placeholder) e.preventDefault();
 });
 
-// Scroll-reveal: fade/rise [data-reveal] elements in as they enter the viewport.
+// Fade elements in as they scroll into view.
 (function () {
     const targets = document.querySelectorAll("[data-reveal]");
     if (!targets.length) return;
 
-    // Reduced-motion users (and browsers without IntersectionObserver) keep the
-    // content fully visible; we never add the hidden .reveal state for them.
+    // For reduce-motion users (or old browsers) just leave everything visible.
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion || !("IntersectionObserver" in window)) return;
 
@@ -90,7 +102,7 @@ document.addEventListener("click", (e) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
                 entry.target.classList.add("is-visible");
-                obs.unobserve(entry.target); // reveal once, then stop watching
+                obs.unobserve(entry.target); // only reveal once
             });
         },
         { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }

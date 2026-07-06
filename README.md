@@ -15,7 +15,9 @@ A single-page marketing site for a fictional church, Rock Solid Christian Church
 - **Bootstrap 5.3.3:** grid, utilities, and the offcanvas mobile menu
 - **Swiper 11:** the responsive ministry carousel
 - **Vanilla JavaScript:** service countdown timer and carousel initialization
-- **Bootstrap Icons** and **Font Awesome 6:** iconography
+- **Inline SVG icons:** brand, navigation, and UI glyphs are inlined in the
+  markup rather than pulled from an icon-font CDN, so no extra render-blocking
+  CSS or webfonts load for iconography
 - **Inter** (Google Fonts): typography
 
 There is no build step; it is a static site.
@@ -27,14 +29,18 @@ There is no build step; it is a static site.
 - Swipeable, autoplaying ministry carousel: arrow-key navigation, pause on
   hover, auto-rotation stops when keyboard focus enters, and the centered
   card is highlighted on mobile where touch has no hover
-- Scroll-reveal animations via IntersectionObserver, skipped entirely for
-  `prefers-reduced-motion` users
+- Sections fade in as you scroll to them (using IntersectionObserver). This is
+  turned off for anyone who has "reduce motion" set on their device, so it stays
+  comfortable for people who get motion sickness or just prefer less movement
 - WCAG 2.2 AA: passes an axe-core audit with zero violations (contrast-safe
   text tokens, 24px tap targets, skip link, carousel ARIA per the W3C
   pattern, reduced-motion support throughout)
-- Performance: photography served as right-sized WebP with lazy loading
-  (~14 MB of PNGs reduced to ~1 MB), preloaded hero image, and
+- Performance: photography served as right-sized WebP with lazy loading,
+  a WebP decorative texture, no icon-font CDNs (icons are inline SVG),
+  preloaded hero image, a `gstatic` preconnect for the webfont, and
   cache-control headers tuned in `netlify.toml`
+- Security headers in `netlify.toml`: `nosniff`, a restrictive
+  `Referrer-Policy`, `X-Frame-Options: DENY`, and HSTS
 - Bootstrap offcanvas menu on smaller screens
 - Design tokens for consistent theming
 
