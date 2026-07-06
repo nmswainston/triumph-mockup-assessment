@@ -43,6 +43,10 @@ body {
 
 img {
   max-width: 100%;
+  /* Images carry width/height attributes so the browser knows their shape
+     before they load; height auto keeps them from stretching when CSS
+     resizes the width. */
+  height: auto;
   display: block;
 }
 
@@ -93,7 +97,6 @@ img {
 
 .skip-link:focus-visible {
   transform: none;
-  color: #fff;
 }
 
 /* ===== Shared buttons ===== */
@@ -319,7 +322,6 @@ img {
 /* --- Mobile offcanvas menu --- */
 
 .mobile-menu {
-  position: fixed;
   width: min(86vw, 360px);
   background: var(--dark);
   color: #fff;
@@ -433,7 +435,6 @@ img {
 
 .hero__title {
   max-width: 1100px;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 900;
   font-size: 80px;
   line-height: 96px;
@@ -446,7 +447,6 @@ img {
 .hero__subcopy {
   max-width: 900px;
   margin: 0 auto 2rem;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 500;
   font-size: 36px;
   line-height: 48px;
@@ -544,13 +544,6 @@ img {
   align-items: center;
   justify-content: center;
   color: #fff;
-  opacity: 1;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-.hero__social a:hover,
-.hero__social a:focus {
   text-decoration: none;
 }
 
@@ -559,10 +552,6 @@ img {
   height: 24px;
   fill: currentColor;
   display: block;
-}
-
-.hero__social a:hover {
-  opacity: 1;
 }
 
 /* --- Hero responsive --- */
@@ -688,13 +677,43 @@ img {
 /* ===== Welcome / Who We Are ===== */
 
 .about-section {
-  background-color: var(--bg);
+  position: relative;
   min-height: clamp(620px, 68vw, 863px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+
+/* The Figma tucks a couple of giant blurred gradient blobs behind the hero
+   and this section. On the white page they only read as the faintest gray
+   wash, but they're part of the design, so they're recreated here as
+   pseudo-elements instead of extra divs. */
+.about-section::before,
+.about-section::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #999999, #ffffff 45%, #272727);
+  opacity: 0.05;
+  filter: blur(110px);
+  pointer-events: none;
+}
+
+.about-section::before {
+  top: -260px;
+  left: -300px;
+  transform: rotate(-105deg);
+}
+
+.about-section::after {
+  top: -160px;
+  right: -260px;
+  transform: rotate(-175deg);
 }
 
 .about-container {
@@ -822,7 +841,6 @@ img {
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: auto;
   background-color: var(--orange);
   border-radius: 48px;
   padding: clamp(4rem, 9vw, 10.5rem) clamp(1.5rem, 6vw, 12rem) 0;
@@ -887,7 +905,12 @@ img {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
 }
 
+/* Lay the card out as a column so the link can pin to the bottom. With the
+   cards all equal height, the orange links line up across the row even when
+   one card's text wraps to an extra line (like in the Figma). */
 .mission-card .card-body {
+  display: flex;
+  flex-direction: column;
   padding: 3.25rem 1.5rem;
 }
 
@@ -913,6 +936,7 @@ img {
 }
 
 .mission-card__link {
+  margin-top: auto;
   color: var(--orange-text);
   font-size: 18px;
   font-weight: 600;
@@ -990,7 +1014,6 @@ img {
 @media (min-width: 1200px) {
   .mission-gospel {
     width: 1280px;
-    height: auto;
     margin-left: auto;
     margin-right: auto;
   }
@@ -1016,7 +1039,6 @@ img {
 
 @media (max-width: 991.98px) {
   .mission-band {
-    min-height: auto;
     padding: 4.5rem 1.25rem 3rem;
   }
 
@@ -1025,7 +1047,6 @@ img {
     /* Less top space on phones so there isn't a big empty orange gap. */
     margin-top: 2rem;
     padding-top: 3rem;
-    height: auto;
   }
 
   .mission-gospel__art {
@@ -1155,6 +1176,35 @@ img {
 
 /* ===== Find a Place to Volunteer (ministry carousel) ===== */
 
+/* Same idea as the about-section blobs: the Figma flanks this section with
+   two big blurred near-white rectangles (619x541, #F7F7F6 at 50%). They're
+   practically invisible, but they're in the file, so they're in the build. */
+#volunteer {
+  position: relative;
+}
+
+#volunteer::before,
+#volunteer::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 90px;
+  width: 619px;
+  height: 541px;
+  background: #F7F7F6;
+  opacity: 0.5;
+  filter: blur(84px);
+  pointer-events: none;
+}
+
+#volunteer::before {
+  left: -195px;
+}
+
+#volunteer::after {
+  right: -141px;
+}
+
 .volunteer__icon {
   width: 72px;
   height: auto;
@@ -1200,12 +1250,6 @@ img {
 .ministry-tile__img--kids,
 .ministry-tile__img--women {
   object-position: 26% center;
-}
-
-.ministry-tile__img--students,
-.ministry-tile__img--worship,
-.ministry-tile__img--small-groups {
-  object-position: 50% center;
 }
 
 .ministry-tile__img--men {
@@ -1297,7 +1341,7 @@ img {
 
 .stories-card h2 {
   font-size: clamp(36px, 3vw, 48px);
-  font-weight: 800 !important;
+  font-weight: 800;
   line-height: clamp(42px, 3.25vw, 52px);
 }
 
@@ -1535,16 +1579,8 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1.5px solid var(--dark);
-  border-radius: 50%;
   color: var(--ink);
-  font-size: 1.45rem;
-  line-height: 1;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.footer__social a:has(svg) {
-  border: 0;
+  transition: color 0.2s ease;
 }
 
 .footer__facebook-icon,
@@ -1571,7 +1607,6 @@ img {
 }
 
 .footer__social a:hover {
-  border-color: var(--orange);
   color: var(--orange);
 }
 
@@ -1600,10 +1635,6 @@ img {
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 1rem;
-}
-
-.footer__links li {
-  margin-bottom: 0;
 }
 
 .footer__links a {

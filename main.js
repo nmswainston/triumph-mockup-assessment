@@ -42,7 +42,8 @@ if (window.Swiper) {
         slidesPerView: "auto",
         spaceBetween: 16,
         centeredSlides: true,
-        // rewind instead of loop - loop was glitchy with only 7 slides.
+        // rewind back to the start at the end. (Real looping needs about 2x
+        // the slides we show; with only 7 tiles Swiper warns and glitches.)
         rewind: true,
         speed: 500,
         grabCursor: true,
@@ -51,14 +52,21 @@ if (window.Swiper) {
             ? false
             : { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
         pagination: { el: ".swiper-pagination", clickable: true },
+        // Whole numbers here so the tiles fill the row evenly instead of
+        // leaving a half-tile hanging off the right edge.
         breakpoints: {
-            576: { slidesPerView: 2.5, centeredSlides: false, spaceBetween: 20 },
-            768: { slidesPerView: 3.5, centeredSlides: false, spaceBetween: 24 },
+            576: { slidesPerView: 2, centeredSlides: false, spaceBetween: 20 },
+            768: { slidesPerView: 3, centeredSlides: false, spaceBetween: 24 },
             992: { slidesPerView: 5, centeredSlides: false, spaceBetween: 32 },
         },
     });
 
     const carousel = document.querySelector(".ministry-swiper");
+
+    // Once someone tabs into the carousel, autoplay should stay off for good.
+    // Without this flag the observer below would turn it back on the next
+    // time the carousel scrolls into view.
+    let autoplayOff = false;
 
     // Don't autoplay on page load - only run while the carousel is on screen.
     // Start it when it scrolls into view, and pause it again when it leaves.
@@ -66,6 +74,7 @@ if (window.Swiper) {
         ministrySwiper.autoplay.stop();
         new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
+                if (autoplayOff) return;
                 if (entry.isIntersecting) ministrySwiper.autoplay.start();
                 else ministrySwiper.autoplay.stop();
             });
@@ -74,6 +83,7 @@ if (window.Swiper) {
 
     // Stop the autoplay once someone tabs into the carousel.
     carousel.addEventListener("focusin", () => {
+        autoplayOff = true;
         ministrySwiper.autoplay?.stop();
     });
 }
